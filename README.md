@@ -6,5 +6,5 @@ Execute below commands:
 - npm install
 - bower install
 - typings install
-    > If typings is not installed, install it by executing command `npm i -g typings`
+    - If typings is not installed, install it by executing command `npm i -g typings`
 - gulp serve
