@@ -1,0 +1,47 @@
+$page-header-height: 56px;
+.app-container{
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    height: 100%;
+    
+    > nav{
+      width: 240px;  
+      background-color: $c-grey-light;
+      
+      .nav-links{
+          padding: 15px 0;
+          > ul{
+              list-style-type: none;
+                margin: 0;
+                padding: 0;
+          }
+      }
+      
+      .app-title{
+          margin:0;
+          padding: 15px;
+      }    
+    }
+    
+    .page-container{
+        width: calc(100% - 240px);
+        height: 100%;
+        
+        > header{
+            height: $page-header-height;
+            background-color: $c-indigo;
+            padding: 15px;
+            color: #fff;
+            
+            .page-title{
+              margin: 0;  
+            }
+        }
+        
+        > main{
+            height: calc(100% - #{$page-header-height});
+            padding: 15px;
+        }
+    }
+}

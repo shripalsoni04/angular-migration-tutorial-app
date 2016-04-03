@@ -1,0 +1,16 @@
+{
+  "name": "angular-migration-tutorial-app",
+  "version": "1.0.0",
+  "description": "A project to show how to migrate angular 1 application to angular 2 step by step.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shripal Soni",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "gulp": "^3.9.1",
+    "gulp-ruby-sass": "^2.0.6"
+  }
+}
