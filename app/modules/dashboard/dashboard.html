@@ -1,0 +1,16 @@
+<div class="dashboard-page content-container">
+    <h4>Active Projects</h4>
+    <div class="card" ng-repeat="project in dashboardCtrl.lstActiveProjects">
+        <div class="card-header">
+            {{project.name}}
+        </div>
+        <div class="card-action">
+            <button class="btn btn-link" title="edit">
+                <i class="fa fa-pencil"></i>
+            </button>
+        </div>
+        <div class="card-content">
+            {{project.client.name}}
+        </div>
+    </div>
+</div>

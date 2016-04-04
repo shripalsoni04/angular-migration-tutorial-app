@@ -7,8 +7,15 @@ define(function() {
                 controller: 'AppCtrl',
                 controllerAs: 'appCtrl'
             })
+            .state('App.Dashboard', {
+                parent: 'App',
+                url: 'dashboard',
+                templateUrl: 'modules/dashboard/dashboard.html',
+                controller: 'DashboardCtrl',
+                controllerAs: 'dashboardCtrl'
+            });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/dashboard');
     }
     RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     return RouteConfig;

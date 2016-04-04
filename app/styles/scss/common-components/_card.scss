@@ -1,0 +1,26 @@
+.card{
+    width: 250px;
+    display: inline-block;
+    margin-right: 15px;
+    position: relative;
+    box-shadow: 1px 3px 10px $c-grey-light;
+    border: 1px solid $c-grey-light;
+    
+    .card-header {
+        height: 90px;
+        background-color: $c-indigo-light;
+        color: #fff;
+        padding: 15px;
+        font-size: 22px;
+    }
+
+    .card-action {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .card-content {
+        padding: 5px 15px;
+    }   
+}
