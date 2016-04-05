@@ -1,18 +1,23 @@
 define(function() {
     function RouteConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('App', {
+            .state('app', {
                 url: '/',
                 templateUrl: 'modules/app.html',
                 controller: 'AppCtrl',
                 controllerAs: 'appCtrl'
             })
-            .state('App.Dashboard', {
-                parent: 'App',
+            .state('app.dashboard', {
                 url: 'dashboard',
                 templateUrl: 'modules/dashboard/dashboard.html',
                 controller: 'DashboardCtrl',
                 controllerAs: 'dashboardCtrl'
+            })
+            .state('app.project', {
+                url: 'project',
+                templateUrl: 'modules/project/project.html',
+                controller: 'ProjectCtrl',
+                controllerAs: 'projectCtrl'
             });
 
         $urlRouterProvider.otherwise('/dashboard');
