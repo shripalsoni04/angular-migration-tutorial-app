@@ -1,1 +1,76 @@
-<div>Project List Detail Component</div>
+<div class="row project-list-detail-content-container">
+    <div class="col-md-3">
+        <ul class="project-list">
+            <li class="project-list-item" ng-repeat="project in projectListDetailCtrl.lstProjects" ng-click="projectListDetailCtrl.showDetail(project)"
+            ng-class="{'selected':projectListDetailCtrl.selectedProject.id === project.id}">
+                <span class="project-status-ind">
+                    <i class="fa" ng-class="{'fa-check-circle': project.isCompleted, 'fa-circle-o': !project.isCompleted}"></i>
+                </span>
+                <span>{{::project.name}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9 project-detail" ng-if="projectListDetailCtrl.selectedProject">
+        <div class="detail-header row">
+            <div class="col-md-10">
+                <h3>{{projectListDetailCtrl.selectedProject.name}}</h3>
+            </div>
+            <div class="col-md-2 action-container">
+                <span class="pull-right">
+                    <button class="btn btn-link" title="Edit"><i class="fa fa-pencil-square-o"></i></button>
+                    <button class="btn btn-link btn-danger" title="Delete"><i class="fa fa-trash"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="detail-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Client Name</dt>
+                        <dd>{{projectListDetailCtrl.selectedProject.client.name}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Status</dt>
+                        <dd>{{projectListDetailCtrl.selectedProject.isCompleted ? 'Completed' : 'Active'}}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <dl>
+                        <dt>Start Date</dt>
+                        <dd>{{projectListDetailCtrl.selectedProject.startDate | date}}</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl>
+                        <dt>End Date</dt>
+                        <dd>{{projectListDetailCtrl.selectedProject.endDate | date}}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Details</dt>
+                        <dd>{{projectListDetailCtrl.selectedProject.details}}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <dl>
+                        <dt>Employees</dt>
+                        <dd>
+                            <project-employee-list employees="projectListDetailCtrl.selectedProject.employees">
+                            </project-employee-list>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

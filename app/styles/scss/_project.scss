@@ -1,0 +1,46 @@
+.project-list-detail-content-container{
+    padding-right: 15px;
+    .project-list{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        .project-list-item{
+            padding: 15px;
+            cursor: pointer;
+            
+            &.selected{
+                background-color: $c-grey-light;
+            }
+            
+            &:hover{
+                background-color: $c-grey-light;
+            }
+            
+            .project-status-ind{
+                margin-right: 15px;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .project-detail{
+        border: 1px solid $c-grey-light;
+        box-shadow: 1px 3px 5px $c-grey-light;
+        
+        .detail-header{
+            height: 66px;
+            border-bottom: 1px solid $c-grey-light;
+            
+            .action-container{
+                margin-top: 14px;
+                .btn-link{
+                    font-size: 20px;
+                }
+            }
+        }
+        
+        .detail-body{
+            padding: 15px 0;
+        }
+    }    
+}
