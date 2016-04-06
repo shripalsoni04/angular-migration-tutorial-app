@@ -3,6 +3,7 @@ define(function() {
         var vm = this;
         vm.lstProjects = [];
         vm.selectedProject = null;
+        vm.filterText = '';
         
         vm._loadProjectList = function() {
             return Project.get().then(function(lstProjects) {
