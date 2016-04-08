@@ -9,7 +9,11 @@ define([
          */
         this.get = function() {
             return $http.get(this.url);
-        }
+        };
+        
+        this.getById = function(projectId){
+            return $http.get(this.url+'/'+projectId);
+        };
         
         /**
          * Fetches active projects list.
@@ -20,7 +24,7 @@ define([
                     return !project.isCompleted;
                 });
             });
-        }
+        };
     }
 
     ProjectService.$inject = ['InMemoryDatastore'];
