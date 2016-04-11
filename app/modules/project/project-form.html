@@ -1,2 +1,59 @@
-<div>Project Name</div>
-{{projectFormCtrl.project.name}}
+<form name="projectForm" novalidate>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="projectName" class="control-label">Project Name</label>
+            <input type="text" name="projectName" class="form-control" ng-model="projectFormCtrl.project.name" />
+        </div>
+        <div class="col-md-4">
+            <label for="client" class="control-label">Client</label>
+            <select name="client" class="form-control" ng-model="projectFormCtrl.project.client" 
+                ng-options="client as client.name for client in projectFormCtrl.lstClients track by client.id"></select>
+        </div>
+       <div class="col-md-4">
+            <label for="isCompleted">Is Completed?</label>
+            <input name="isCompleted" type="checkbox" ng-model="projectFormCtrl.project.isCompleted" class="checkbox"/>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label for="startDate" class="control-label">Start Date</label>
+            <p class="input-group">
+                <input name="startDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.startDate" is-open="projectFormCtrl.startDatePicker.isOpen" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="projectFormCtrl.startDatePicker.isOpen = !projectFormCtrl.startDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <label for="endDate" class="control-label">End Date</label>
+            <p class="input-group">
+                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.endDate" is-open="projectFormCtrl.endDatePicker.isOpen" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="projectFormCtrl.endDatePicker.isOpen = !projectFormCtrl.endDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label class="control-label">Project Details</label>
+            <textarea name="detail" class="form-control" rows="10" ng-model="projectFormCtrl.project.details"></textarea>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <label class="control-label">Employees</label>
+            <div class="form-group">
+                <select name="empleeToAdd" class="form-control" ng-model="projectFormCtrl.project.employeeToAdd" 
+                    ng-options="employee as employee.name for employee in projectFormCtrl.unmappedEmployees track by employee.id"></select>
+                <button type="button" class="btn btn-default btn-sm" ng-click="projectFormCtrl.addEmployeeToProject(projectFormCtrl.project.employeeToAdd)">Add</button>
+            </div>
+            <div>
+                <project-employee-list 
+                    employees="projectFormCtrl.project.employees" is-show-action="true"
+                    on-employee-remove="projectFormCtrl.onEmployeeRemove()"
+                    ></project-employee-list>    
+            </div>
+        </div>
+    </div>
+</form>

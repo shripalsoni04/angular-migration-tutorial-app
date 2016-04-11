@@ -4,7 +4,8 @@ define(function() {
             scope: {},
             bindToController: {
                 employees: '=employees',
-                isShowAction: '=?isShowAction'
+                isShowAction: '=?isShowAction',
+                onEmployeeRemove: '&onEmployeeRemove'
             },
             controller: ProjectEmployeeListCtrl,
             controllerAs: 'projectEmployeeListCtrl',
@@ -17,6 +18,7 @@ define(function() {
         
         vm.removeEmployee = function(employee, index){
             vm.employees.splice(index, 1);
+            vm.onEmployeeRemove();
         }
         
         vm.init = function(){
