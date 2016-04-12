@@ -1,8 +1,8 @@
-<form name="projectForm" novalidate>
+<form name="projectForm" novalidate ng-submit="projectFormCtrl.save()">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-class="{'has-error': projectForm.projectName.$invalid}">
             <label for="projectName" class="control-label">Project Name</label>
-            <input type="text" name="projectName" class="form-control" ng-model="projectFormCtrl.project.name" />
+            <input type="text" name="projectName" class="form-control" ng-model="projectFormCtrl.project.name" required/>
         </div>
         <div class="col-md-4">
             <label for="client" class="control-label">Client</label>
@@ -43,10 +43,12 @@
     <div class="row">
         <div class="col-md-8">
             <label class="control-label">Employees</label>
-            <div class="form-group">
+            <div class="input-group">
                 <select name="empleeToAdd" class="form-control" ng-model="projectFormCtrl.project.employeeToAdd" 
                     ng-options="employee as employee.name for employee in projectFormCtrl.unmappedEmployees track by employee.id"></select>
-                <button type="button" class="btn btn-default btn-sm" ng-click="projectFormCtrl.addEmployeeToProject(projectFormCtrl.project.employeeToAdd)">Add</button>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="projectFormCtrl.addEmployeeToProject(projectFormCtrl.project.employeeToAdd)">Add</button>
+                </span>
             </div>
             <div>
                 <project-employee-list 
@@ -54,6 +56,12 @@
                     on-employee-remove="projectFormCtrl.onEmployeeRemove()"
                     ></project-employee-list>    
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-default" ng-click="projectFormCtrl.cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-disabled="projectForm.$invalid">Save</button>
         </div>
     </div>
 </form>

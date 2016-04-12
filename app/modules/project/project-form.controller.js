@@ -53,11 +53,16 @@ function(ProjectModel){
             vm.updateUnmappedEmpList();
         };
         
+        vm.save = function(){
+            
+                
+        };
+        
         vm.init = function(){
             var projectId = $stateParams.id;
             if(projectId){
                 vm.loadProjectById(projectId).then(function(project){
-                    vm.project = project;
+                    vm.project = _.cloneDeep(project);
                     vm.updateUnmappedEmpList();
                 });
             }else{

@@ -15,6 +15,19 @@ define([
             return $http.get(this.url+'/'+projectId);
         };
         
+        this.insert = function(){
+                
+        };
+        
+        this.update = function(){
+            
+        };
+        
+        
+        this.save = function(oProject){
+            return oProject && oProject.id ? this.update(oProject) : this.insert(oProject);
+        };
+        
         /**
          * Fetches active projects list.
          */
