@@ -1,8 +1,9 @@
 <form name="projectForm" novalidate ng-submit="projectFormCtrl.save()">
     <div class="row">
-        <div class="col-md-4" ng-class="{'has-error': projectForm.projectName.$invalid}">
-            <label for="projectName" class="control-label">Project Name</label>
+        <div class="col-md-4" ng-class="{'has-error': projectForm.projectName.$invalid && projectForm.projectName.$dirty}">
+            <label for="projectName" class="control-label">Project Name*</label>
             <input type="text" name="projectName" class="form-control" ng-model="projectFormCtrl.project.name" required/>
+            <span class="help-block" ng-show="projectForm.projectName.$invalid && projectForm.projectName.$dirty">Project name is required.</span>
         </div>
         <div class="col-md-4">
             <label for="client" class="control-label">Client</label>

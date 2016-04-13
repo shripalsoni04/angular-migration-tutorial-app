@@ -39,8 +39,8 @@ define(function() {
             id: id
         };
     }
-    
-    
+
+
     InMemoryDatastoreService.prototype._getList = function(entityName) {
         return this._loadDatastore().then(function(datastore) {
             if (!datastore[entityName]) {
@@ -49,18 +49,18 @@ define(function() {
             return this.$q.when(datastore[entityName]);
         }.bind(this));
     }
-    
+
     InMemoryDatastoreService.prototype._getById = function(entityName, id) {
-        return this._getList(entityName).then(function(collection){
-            return _.find(collection, {id: +id});
+        return this._getList(entityName).then(function(collection) {
+            return _.find(collection, { id: +id });
         }.bind(this));
     }
-    
+
     InMemoryDatastoreService.prototype.get = function(url) {
         var oUrlDetail = this._parseUrl(url);
-        if(oUrlDetail.id){
+        if (oUrlDetail.id) {
             return this._getById(oUrlDetail.entityName, oUrlDetail.id);
-        }else{
+        } else {
             return this._getList(oUrlDetail.entityName);
         }
     }
@@ -74,21 +74,21 @@ define(function() {
             return this.$q.when(datastore[entityName]);
         }.bind(this));
     }
-    
-    InMemoryDatastoreService.prototype.post = function(url, oEntity){
+
+    InMemoryDatastoreService.prototype.post = function(url, oEntity) {
         var oUrlDetail = this._parseUrl(url);
-        return this._getList(oUrlDetail,entityName).then(function(collection){
+        return this._getList(oUrlDetail.entityName).then(function(collection) {
             var maxId = _.maxBy(collection, 'id').id;
             oEntity.id = maxId + 1;
             collection.push(oEntity);
             return oEntity;
         }.bind(this));
     }
-    
-    InMemoryDatastoreService.prototype.put = function(url, oEntity){
+
+    InMemoryDatastoreService.prototype.put = function(url, oEntity) {
         var oUrlDetail = this._parseUrl(url);
-        return this._getList(oUrlDetail,entityName).then(function(collection){
-            var entityIndex = collection.indexOf(_.find(collection, {'id': oUrlDetail.id}))
+        return this._getList(oUrlDetail.entityName).then(function(collection) {
+            var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
             collection.splice(entityIndex, 1, oEntity);
             return oEntity;
         }.bind(this));

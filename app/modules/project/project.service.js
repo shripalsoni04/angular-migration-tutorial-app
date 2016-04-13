@@ -15,12 +15,12 @@ define([
             return $http.get(this.url+'/'+projectId);
         };
         
-        this.insert = function(){
-                
+        this.insert = function(oProject){
+            return $http.post(this.url, oProject);
         };
         
-        this.update = function(){
-            
+        this.update = function(oProject){
+            return $http.put(this.url+'/'+oProject.id, oProject);
         };
         
         

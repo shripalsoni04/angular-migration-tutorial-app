@@ -2,7 +2,7 @@ define([
     'modules/project/project.model'
 ],
 function(ProjectModel){
-    function ProjectFormCtrl($stateParams, Project, Client, Employee){
+    function ProjectFormCtrl($stateParams, $state, Project, Client, Employee){
         var vm = this;
         vm.project = null;
         vm.lstClients = [];
@@ -54,8 +54,9 @@ function(ProjectModel){
         };
         
         vm.save = function(){
-            
-                
+            Project.save(vm.project).then(function(result){
+                window.history.back();
+            });
         };
         
         vm.init = function(){
@@ -76,6 +77,6 @@ function(ProjectModel){
         vm.init();
         
     }
-    ProjectFormCtrl.$inject = ['$stateParams', 'Project', 'Client', 'Employee'];
+    ProjectFormCtrl.$inject = ['$stateParams', '$state', 'Project', 'Client', 'Employee'];
     return ProjectFormCtrl; 
 });

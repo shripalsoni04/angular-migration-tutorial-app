@@ -1,5 +1,5 @@
 define(function() {
-    function ProjectListDetailCtrl(Project) {
+    function ProjectListDetailCtrl($state, Project) {
         var vm = this;
         vm.lstProjects = [];
         vm.selectedProject = null;
@@ -20,6 +20,10 @@ define(function() {
             vm.selectedProject = project;
         };
         
+        vm.addProject = function(){
+            $state.go('app.project.add');
+        };
+        
         vm.init = function() {
             vm._loadProjectList();
         };
@@ -27,6 +31,6 @@ define(function() {
         vm.init();
     }
 
-    ProjectListDetailCtrl.$inject = ['Project'];
+    ProjectListDetailCtrl.$inject = ['$state', 'Project'];
     return ProjectListDetailCtrl;
 });
