@@ -93,6 +93,14 @@ define(function() {
             return oEntity;
         }.bind(this));
     }
+    
+    InMemoryDatastoreService.prototype.delete = function(url) {
+        var oUrlDetail = this._parseUrl(url);
+        return this._getList(oUrlDetail.entityName).then(function(collection) {
+            var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
+            collection.splice(entityIndex, 1);
+        }.bind(this));
+    }
 
     InMemoryDatastoreService.$inject = ['$q', 'inMemoryDatastorePath', 'inMemoryDatastoreApiEndPoint'];
     return InMemoryDatastoreService;

@@ -28,6 +28,10 @@ define([
             return oProject && oProject.id ? this.update(oProject) : this.insert(oProject);
         };
         
+        this.delete = function(oProject){
+            return $http.delete(this.url+'/'+oProject.id);
+        };
+        
         /**
          * Fetches active projects list.
          */
