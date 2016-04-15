@@ -1,5 +1,11 @@
-define(function(){
-    function projectRouteConfig($stateProvider, $urlRouterProvider){
+/**
+ * Route configurations for project functionality. 
+ */
+
+define(function() {
+    'use strict';
+
+    function projectRouteConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('app.project', {
                 abstract: true,
@@ -25,9 +31,10 @@ define(function(){
                 controller: 'ProjectFormCtrl',
                 controllerAs: 'projectFormCtrl'
             });
-            
-            $urlRouterProvider.otherwise('/project');
+
+        $urlRouterProvider.otherwise('/project');
     }
+
     projectRouteConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     return projectRouteConfig;
 });

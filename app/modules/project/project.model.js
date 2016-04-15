@@ -1,4 +1,10 @@
+/**
+ * Project Model Class
+ */
+
 define(function() {
+    'use strict';
+
     function ProjectModel() {
         this.id = null;
         this.name = null;

@@ -1,4 +1,19 @@
+/**
+ * Directive to show list of employees associated with project.
+ * Inputs
+ * ========
+ * employees: List of eomployee for the project
+ * isShowAction: If true, shows delete action button on each row.
+ * 
+ * Output
+ * =========
+ * onEmployeeRemove: On remove of any employee from the project, the 
+ *                  function provided here will be  executed.
+ */
+
 define(function() {
+    'use strict';
+    
     function projectEmployeeListDirective() {
         return {
             scope: {},
@@ -16,16 +31,18 @@ define(function() {
     function ProjectEmployeeListCtrl() {
         var vm = this;
         
-        vm.removeEmployee = function(employee, index){
+        vm.removeEmployee = removeEmployee;
+        
+        function removeEmployee(employee, index){
             vm.employees.splice(index, 1);
             vm.onEmployeeRemove();
         }
         
-        vm.init = function(){
+        function init(){
             vm.isShowAction = !!vm.isShowAction;
         };
         
-        vm.init();
+        init();
     }
 
     ProjectEmployeeListCtrl.$inject = [];

@@ -1,44 +1,53 @@
+/**
+ * Controller for showing project list and selected project's details. 
+ */
+
 define(function() {
+    'use strict';
+
     function ProjectListDetailCtrl($state, Project) {
         var vm = this;
         vm.lstProjects = [];
         vm.selectedProject = null;
         vm.filterText = '';
 
-        vm._loadProjectList = function() {
+        vm.showDetail = showDetail;
+        vm.addProject = addProject;
+        vm.deleteProject = deleteProject;
+
+        function addProject() {
+            $state.go('app.project.add');
+        }
+
+        function deleteProject(oProject) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                Project.delete(oProject).then(function() {
+                    loadProjectList();
+                });
+            }
+        }
+
+        function showDetail(oProject) {
+            vm.selectedProject = oProject;
+        }
+
+        function loadProjectList() {
             return Project.get().then(function(lstProjects) {
                 vm.lstProjects.length = 0;
                 Array.prototype.push.apply(vm.lstProjects, lstProjects);
-                vm.selecteFirstProject();
+                selectFirstProject();
             });
         };
 
-        vm.selecteFirstProject = function() {
+        function selectFirstProject() {
             vm.selectedProject = vm.lstProjects[0];
         };
 
-        vm.showDetail = function(oProject) {
-            vm.selectedProject = oProject;
+        function init() {
+            loadProjectList();
         };
 
-        vm.addProject = function() {
-            $state.go('app.project.add');
-        };
-
-        vm.deleteProject = function(oProject) {
-            if (confirm('Are you sure you want to delete this project?')) {
-                Project.delete(oProject).then(function() {
-                    vm._loadProjectList();
-                });
-            }
-
-        };
-
-        vm.init = function() {
-            vm._loadProjectList();
-        };
-
-        vm.init();
+        init();
     }
 
     ProjectListDetailCtrl.$inject = ['$state', 'Project'];

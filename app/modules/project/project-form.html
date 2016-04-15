@@ -48,7 +48,8 @@
                 <select name="empleeToAdd" class="form-control" ng-model="projectFormCtrl.project.employeeToAdd" 
                     ng-options="employee as employee.name for employee in projectFormCtrl.unmappedEmployees track by employee.id"></select>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="projectFormCtrl.addEmployeeToProject(projectFormCtrl.project.employeeToAdd)">Add</button>
+                    <button type="button" class="btn btn-default" ng-disabled="!projectFormCtrl.project.employeeToAdd"
+                        ng-click="projectFormCtrl.addEmployeeToProject(projectFormCtrl.project.employeeToAdd)">Add</button>
                 </span>
             </div>
             <div>

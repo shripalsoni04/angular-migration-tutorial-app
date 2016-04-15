@@ -1,3 +1,7 @@
+/**
+ * Routes for app module.
+ */
+
 define(function() {
     function RouteConfig($stateProvider, $urlRouterProvider) {
         $stateProvider

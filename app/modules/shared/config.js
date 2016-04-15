@@ -1,5 +1,9 @@
-define(function(){
-   return {
-       apiEndPoint: 'http://domain.com/api/'
-   } 
+/**
+ * Configurations for application.
+ */
+
+define(function() {
+    return {
+        apiEndPoint: 'http://domain.com/api/'
+    }
 });

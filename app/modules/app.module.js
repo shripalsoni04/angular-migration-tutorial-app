@@ -1,3 +1,7 @@
+/**
+ * Main App Module
+ */
+
 define([
     'angular',
     'angular-bootstrap',
@@ -10,17 +14,19 @@ define([
     'modules/employee/employee.module',
     'modules/shared/shared.module',
     'modules/shared/config'
-], function (angular, uiBootstrap, uiRouter, AppCtrl, RouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule, oConfig) {
+], function(angular, uiBootstrap, uiRouter, AppCtrl, appRouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule, oConfig) {
+    'use strict';
+
     return angular.module('app', [
-            'ui.router', 
-            'ui.bootstrap',
-            dashboardModule.name, 
-            projectModule.name, 
-            clientModule.name,
-            employeeModule.name,
-            sharedModule.name
-        ])
-        .config(RouteConfig)
+        'ui.router',
+        'ui.bootstrap',
+        dashboardModule.name,
+        projectModule.name,
+        clientModule.name,
+        employeeModule.name,
+        sharedModule.name
+    ])
+        .config(appRouteConfig)
         .value('inMemoryDatastorePath', 'mock-data/datastore.js')
         .value('inMemoryDatastoreApiEndPoint', oConfig.apiEndPoint)
         .controller('AppCtrl', AppCtrl);

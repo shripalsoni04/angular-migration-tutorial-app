@@ -1,25 +1,30 @@
+/**
+ * Controller for dashboard screen.
+ */
+
 define(function() {
+    'use strict';
+
     function DashboardCtrl(Project) {
         var vm = this;
-        vm.lstActiveProjects = [];
-        
+        vm.lstActiveProjects = [];  // list of active projects
+
+        vm.loadActiveProjects = loadActiveProjects;
+
         /**
          * Loads active projects list.
          */
-        vm.loadActiveProjects = function(){
+        function loadActiveProjects() {
             Project.getActiveProjects().then(function(lstProjects) {
                 Array.prototype.push.apply(vm.lstActiveProjects, lstProjects);
-            });    
+            });
         }
-        
-        /**
-         * Initilizes controller.
-         */
-        vm.init = function(){
+
+        function init() {
             vm.loadActiveProjects();
         }
-        
-        vm.init();
+
+        init();
     }
     DashboardCtrl.$inject = ['Project'];
     return DashboardCtrl;

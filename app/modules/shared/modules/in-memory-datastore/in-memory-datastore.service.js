@@ -1,4 +1,11 @@
+/**
+ * Service to provide methods for simulating $http methods related to CRUD operations
+ * by storing data in memory.
+ */
+
 define(function() {
+    'use strict';
+    
     function InMemoryDatastoreService($q, inMemoryDatastorePath, inMemoryDatastoreApiEndPoint) {
         var that = this;
         that.$q = $q;
@@ -12,11 +19,14 @@ define(function() {
             });
         })
     }
-
+    
+    /**
+     * Returns promise which resolves to in memory datastore.
+     */
     InMemoryDatastoreService.prototype._loadDatastore = function() {
         return this._datastore ? this.$q.when(this._datastore) : this.datastoreReadyPromise;
     }
-
+    
     InMemoryDatastoreService.prototype._getEntityName = function(url) {
         return url.replace(this.inMemoryDatastoreApiEndPoint, '');
     }
