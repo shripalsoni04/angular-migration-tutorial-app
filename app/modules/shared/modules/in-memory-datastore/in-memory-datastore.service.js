@@ -6,6 +6,8 @@
 define(function() {
     'use strict';
     
+    InMemoryDatastoreService.$inject = ['$q', 'inMemoryDatastorePath', 'inMemoryDatastoreApiEndPoint'];
+    
     function InMemoryDatastoreService($q, inMemoryDatastorePath, inMemoryDatastoreApiEndPoint) {
         var that = this;
         that.$q = $q;
@@ -75,16 +77,6 @@ define(function() {
         }
     }
 
-    InMemoryDatastoreService.prototype.getById = function() {
-        var entityName = this._getEntityName(url);
-        return this._loadDatastore().then(function(datastore) {
-            if (!datastore[entityName]) {
-                datastore[entityName] = [];
-            }
-            return this.$q.when(datastore[entityName]);
-        }.bind(this));
-    }
-
     InMemoryDatastoreService.prototype.post = function(url, oEntity) {
         var oUrlDetail = this._parseUrl(url);
         return this._getList(oUrlDetail.entityName).then(function(collection) {
@@ -112,6 +104,5 @@ define(function() {
         }.bind(this));
     }
 
-    InMemoryDatastoreService.$inject = ['$q', 'inMemoryDatastorePath', 'inMemoryDatastoreApiEndPoint'];
     return InMemoryDatastoreService;
 });

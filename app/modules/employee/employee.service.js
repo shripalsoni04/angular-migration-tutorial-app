@@ -7,6 +7,8 @@ define([
 ], function(oConfig) {
     'use strict';
     
+    EmployeeService.$inject = ['InMemoryDatastore'];
+    
     function EmployeeService($http) {
         this.url = oConfig.apiEndPoint + 'employee';
 
@@ -18,6 +20,6 @@ define([
         };
 
     }
-    EmployeeService.$inject = ['InMemoryDatastore'];
+    
     return EmployeeService;
 });

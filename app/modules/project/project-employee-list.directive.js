@@ -23,7 +23,7 @@ define(function() {
                 onEmployeeRemove: '&onEmployeeRemove'
             },
             controller: ProjectEmployeeListCtrl,
-            controllerAs: 'projectEmployeeListCtrl',
+            controllerAs: 'vm',
             templateUrl: 'modules/project/project-employee-list.directive.html'
         }
     }
@@ -45,6 +45,5 @@ define(function() {
         init();
     }
 
-    ProjectEmployeeListCtrl.$inject = [];
     return projectEmployeeListDirective;
 });

@@ -7,7 +7,9 @@ define([
     'modules/shared/config'
 ], function(oConfig) {
     'use strict';
-
+    
+    ProjectService.$inject = ['InMemoryDatastore'];
+    
     function ProjectService($http) {
         /**
          * URL for project api.
@@ -53,6 +55,5 @@ define([
         };
     }
 
-    ProjectService.$inject = ['InMemoryDatastore'];
     return ProjectService;
 });
