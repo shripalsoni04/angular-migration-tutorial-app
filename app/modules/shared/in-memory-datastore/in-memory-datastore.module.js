@@ -9,7 +9,7 @@ define([
     function(angular, InMemoryDatastoreService) {
         'use strict';
 
-        return angular.module('inMemoryDatastore', [])
+        return angular.module('app.shared.inMemoryDatastore', [])
             .value('inMemoryDatastorePath', '')
             .value('inMemoryDatastoreApiEndPoint', '')
             .service('InMemoryDatastore', InMemoryDatastoreService);

@@ -4,9 +4,15 @@
 
 define([
     'angular',
-    './modules/in-memory-datastore/in-memory-datastore.module'
-], function(angular, inMemoryDatastoreModule) {
+    'modules/shared/in-memory-datastore/in-memory-datastore.module',
+    'modules/shared/exception/exception.module',
+    'modules/shared/logger/logger.module',
+], function (angular, inMemoryDatastoreModule, exceptionModule, loggerModule) {
     'use strict';
 
-    return angular.module('app.shared', [inMemoryDatastoreModule.name]);
+    return angular.module('app.shared', [
+        inMemoryDatastoreModule.name,
+        exceptionModule.name,
+        loggerModule.name
+    ]);
 });

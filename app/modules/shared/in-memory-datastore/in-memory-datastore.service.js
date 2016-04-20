@@ -27,17 +27,18 @@ define(function() {
      */
     InMemoryDatastoreService.prototype._loadDatastore = function() {
         return this._datastore ? this.$q.when(this._datastore) : this.datastoreReadyPromise;
-    }
+    };
     
     InMemoryDatastoreService.prototype._getEntityName = function(url) {
         return url.replace(this.inMemoryDatastoreApiEndPoint, '');
-    }
+    };
 
     InMemoryDatastoreService.prototype._getLocation = function(href) {
         var l = document.createElement('a');
         l.href = href;
         return l;
     };
+    
     InMemoryDatastoreService.prototype._parseUrl = function(url) {
         var location = this._getLocation(url);
         var pathname = location.pathname.substring(1);
@@ -50,7 +51,7 @@ define(function() {
             entityName: entityName,
             id: id
         };
-    }
+    };
 
 
     InMemoryDatastoreService.prototype._getList = function(entityName) {
@@ -60,13 +61,13 @@ define(function() {
             }
             return this.$q.when(datastore[entityName]);
         }.bind(this));
-    }
+    };
 
     InMemoryDatastoreService.prototype._getById = function(entityName, id) {
         return this._getList(entityName).then(function(collection) {
             return _.find(collection, { id: +id });
         }.bind(this));
-    }
+    };
 
     InMemoryDatastoreService.prototype.get = function(url) {
         var oUrlDetail = this._parseUrl(url);
@@ -75,7 +76,7 @@ define(function() {
         } else {
             return this._getList(oUrlDetail.entityName);
         }
-    }
+    };
 
     InMemoryDatastoreService.prototype.post = function(url, oEntity) {
         var oUrlDetail = this._parseUrl(url);
@@ -85,7 +86,7 @@ define(function() {
             collection.push(oEntity);
             return oEntity;
         }.bind(this));
-    }
+    };
 
     InMemoryDatastoreService.prototype.put = function(url, oEntity) {
         var oUrlDetail = this._parseUrl(url);
@@ -94,7 +95,7 @@ define(function() {
             collection.splice(entityIndex, 1, oEntity);
             return oEntity;
         }.bind(this));
-    }
+    };
     
     InMemoryDatastoreService.prototype.delete = function(url) {
         var oUrlDetail = this._parseUrl(url);
@@ -102,7 +103,7 @@ define(function() {
             var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
             collection.splice(entityIndex, 1);
         }.bind(this));
-    }
+    };
 
     return InMemoryDatastoreService;
 });
