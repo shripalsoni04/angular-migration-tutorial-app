@@ -9,7 +9,7 @@ define([
     function(ProjectModel) {
         'use strict';
 
-        function ProjectFormCtrl($stateParams, $state, Project, Client, Employee) {
+        function ProjectFormCtrl($stateParams, $state, ProjectService, ClientService, EmployeeService) {
             var vm = this;
             vm.project = null;
             vm.lstClients = [];
@@ -36,23 +36,23 @@ define([
             }
 
             function save() {
-                Project.save(vm.project).then(function(result) {
+                ProjectService.save(vm.project).then(function(result) {
                     window.history.back();
                 });
             }
 
             function loadProjectById(projectId) {
-                return Project.getById(projectId);
+                return ProjectService.getById(projectId);
             };
 
             function loadClients() {
-                return Client.get().then(function(lstClients) {
+                return ClientService.get().then(function(lstClients) {
                     Array.prototype.push.apply(vm.lstClients, lstClients);
                 });
             };
 
             function loadEmployees() {
-                return Employee.get().then(function(lstEmployees) {
+                return EmployeeService.get().then(function(lstEmployees) {
                     Array.prototype.push.apply(vm.lstEmployees, lstEmployees);
                     updateUnmappedEmpList();
                 });
@@ -86,6 +86,6 @@ define([
             init();
 
         }
-        ProjectFormCtrl.$inject = ['$stateParams', '$state', 'Project', 'Client', 'Employee'];
+        ProjectFormCtrl.$inject = ['$stateParams', '$state', 'ProjectService', 'ClientService', 'EmployeeService'];
         return ProjectFormCtrl;
     });

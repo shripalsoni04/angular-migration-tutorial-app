@@ -9,5 +9,5 @@ define([
     'use strict';
 
     return angular.module('app.employee', [])
-        .service('Employee', EmployeeService);
+        .service('EmployeeService', EmployeeService);
 });

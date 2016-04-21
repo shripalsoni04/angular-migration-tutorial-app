@@ -5,7 +5,7 @@
 define(function() {
     'use strict';
 
-    function ProjectListDetailCtrl($state, Project) {
+    function ProjectListDetailCtrl($state, ProjectService) {
         var vm = this;
         vm.lstProjects = [];
         vm.selectedProject = null;
@@ -21,7 +21,7 @@ define(function() {
 
         function deleteProject(oProject) {
             if (confirm('Are you sure you want to delete this project?')) {
-                Project.delete(oProject).then(function() {
+                ProjectService.delete(oProject).then(function() {
                     loadProjectList();
                 });
             }
@@ -32,7 +32,7 @@ define(function() {
         }
 
         function loadProjectList() {
-            return Project.get().then(function(lstProjects) {
+            return ProjectService.get().then(function(lstProjects) {
                 vm.lstProjects.length = 0;
                 Array.prototype.push.apply(vm.lstProjects, lstProjects);
                 selectFirstProject();
@@ -50,6 +50,6 @@ define(function() {
         init();
     }
 
-    ProjectListDetailCtrl.$inject = ['$state', 'Project'];
+    ProjectListDetailCtrl.$inject = ['$state', 'ProjectService'];
     return ProjectListDetailCtrl;
 });

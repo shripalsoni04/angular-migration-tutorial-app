@@ -4,7 +4,7 @@
 
 define([
     'angular',
-    'modules/project/route-config',
+    'modules/project/project.routes',
     'modules/project/project.controller',
     'modules/project/project.service',
     'modules/project/project-list-detail.controller',
@@ -15,7 +15,7 @@ define([
 
     return angular.module('app.project', [])
         .config(projectRouteConfig)
-        .service('Project', ProjectService)
+        .service('ProjectService', ProjectService)
         .controller('ProjectCtrl', ProjectCtrl)
         .controller('ProjectListDetailCtrl', ProjectListDetailCtrl)
         .controller('ProjectFormCtrl', ProjectFormCtrl)

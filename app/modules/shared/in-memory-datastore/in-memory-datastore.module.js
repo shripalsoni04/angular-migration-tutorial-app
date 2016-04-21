@@ -4,12 +4,13 @@
 
 define([
     'angular',
+    'modules/shared/exception/exception.module',
     './in-memory-datastore.service'
 ],
-    function(angular, InMemoryDatastoreService) {
+    function(angular, exceptionModule, InMemoryDatastoreService) {
         'use strict';
 
-        return angular.module('app.shared.inMemoryDatastore', [])
+        return angular.module('app.shared.inMemoryDatastore', [exceptionModule.name])
             .value('inMemoryDatastorePath', '')
             .value('inMemoryDatastoreApiEndPoint', '')
             .service('InMemoryDatastore', InMemoryDatastoreService);

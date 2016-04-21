@@ -3,7 +3,7 @@ define([], function(){
     
     LoggerService.$inject = ['$log'];
     
-    function LoggerService(){
+    function LoggerService($log){
         this.error = error;
         this.info = info;
         this.warning = warning;

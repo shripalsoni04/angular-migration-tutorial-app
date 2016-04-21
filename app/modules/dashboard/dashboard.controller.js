@@ -5,7 +5,7 @@
 define(function() {
     'use strict';
 
-    function DashboardCtrl(Project) {
+    function DashboardCtrl(ProjectService) {
         var vm = this;
         vm.lstActiveProjects = [];  // list of active projects
 
@@ -15,7 +15,7 @@ define(function() {
          * Loads active projects list.
          */
         function loadActiveProjects() {
-            Project.getActiveProjects().then(function(lstProjects) {
+            ProjectService.getActiveProjects().then(function(lstProjects) {
                 Array.prototype.push.apply(vm.lstActiveProjects, lstProjects);
             });
         }
@@ -26,6 +26,6 @@ define(function() {
 
         init();
     }
-    DashboardCtrl.$inject = ['Project'];
+    DashboardCtrl.$inject = ['ProjectService'];
     return DashboardCtrl;
 });

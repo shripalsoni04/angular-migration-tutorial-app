@@ -6,104 +6,138 @@
 define(function() {
     'use strict';
     
-    InMemoryDatastoreService.$inject = ['$q', 'inMemoryDatastorePath', 'inMemoryDatastoreApiEndPoint'];
+    InMemoryDatastoreService.$inject = ['$q', 'inMemoryDatastorePath', 'Exception'];
     
-    function InMemoryDatastoreService($q, inMemoryDatastorePath, inMemoryDatastoreApiEndPoint) {
-        var that = this;
-        that.$q = $q;
-        that._datastore = null;
-        that.inMemoryDatastoreApiEndPoint = inMemoryDatastoreApiEndPoint;
-
-        that.datastoreReadyPromise = $q(function(resolve) {
+    function InMemoryDatastoreService($q, inMemoryDatastorePath, Exception) {
+        
+        // Service API
+        this.get = get;
+        this.post = post;
+        this.put = put;
+        this.delete = remove;
+        
+        // Service Implementation        
+        var datastore = null;
+        var datastoreReadyPromise = $q(function(resolve) {
             require([inMemoryDatastorePath], function(datastore) {
-                that._datastore = datastore;
+                datastore = datastore;
                 resolve(datastore);
             });
         })
-    }
-    
-    /**
-     * Returns promise which resolves to in memory datastore.
-     */
-    InMemoryDatastoreService.prototype._loadDatastore = function() {
-        return this._datastore ? this.$q.when(this._datastore) : this.datastoreReadyPromise;
-    };
-    
-    InMemoryDatastoreService.prototype._getEntityName = function(url) {
-        return url.replace(this.inMemoryDatastoreApiEndPoint, '');
-    };
-
-    InMemoryDatastoreService.prototype._getLocation = function(href) {
-        var l = document.createElement('a');
-        l.href = href;
-        return l;
-    };
-    
-    InMemoryDatastoreService.prototype._parseUrl = function(url) {
-        var location = this._getLocation(url);
-        var pathname = location.pathname.substring(1);
-        var pathParts = pathname.split('/');
-        var base = pathParts[0];
-        var entityName = pathParts[1];
-        var id = pathParts[2];
-        return {
-            base: base,
-            entityName: entityName,
-            id: id
-        };
-    };
-
-
-    InMemoryDatastoreService.prototype._getList = function(entityName) {
-        return this._loadDatastore().then(function(datastore) {
-            if (!datastore[entityName]) {
-                datastore[entityName] = [];
-            }
-            return this.$q.when(datastore[entityName]);
-        }.bind(this));
-    };
-
-    InMemoryDatastoreService.prototype._getById = function(entityName, id) {
-        return this._getList(entityName).then(function(collection) {
-            return _.find(collection, { id: +id });
-        }.bind(this));
-    };
-
-    InMemoryDatastoreService.prototype.get = function(url) {
-        var oUrlDetail = this._parseUrl(url);
-        if (oUrlDetail.id) {
-            return this._getById(oUrlDetail.entityName, oUrlDetail.id);
-        } else {
-            return this._getList(oUrlDetail.entityName);
+        
+       /**
+        * Returns promise which resolves to in memory datastore.
+        */    
+        function loadDatastore(){
+            return datastore ? $q.when(datastore) : datastoreReadyPromise;
         }
-    };
-
-    InMemoryDatastoreService.prototype.post = function(url, oEntity) {
-        var oUrlDetail = this._parseUrl(url);
-        return this._getList(oUrlDetail.entityName).then(function(collection) {
-            var maxId = _.maxBy(collection, 'id').id;
-            oEntity.id = maxId + 1;
-            collection.push(oEntity);
-            return oEntity;
-        }.bind(this));
-    };
-
-    InMemoryDatastoreService.prototype.put = function(url, oEntity) {
-        var oUrlDetail = this._parseUrl(url);
-        return this._getList(oUrlDetail.entityName).then(function(collection) {
-            var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
-            collection.splice(entityIndex, 1, oEntity);
-            return oEntity;
-        }.bind(this));
-    };
-    
-    InMemoryDatastoreService.prototype.delete = function(url) {
-        var oUrlDetail = this._parseUrl(url);
-        return this._getList(oUrlDetail.entityName).then(function(collection) {
-            var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
-            collection.splice(entityIndex, 1);
-        }.bind(this));
-    };
-
+        
+        /**
+         * Returns location object based on href string.
+         */
+        function getLocation(href) {
+            var l = document.createElement('a');
+            l.href = href;
+            return l;
+        }
+        
+        /**
+         * Parses string url to get baseName, entityName and id of the entity if any.
+         */
+        function parseUrl(url) {
+            var location = getLocation(url);
+            var pathname = location.pathname.substring(1);
+            var pathParts = pathname.split('/');
+            var base = pathParts[0];
+            var entityName = pathParts[1];
+            var id = pathParts[2];
+            return {
+                base: base,
+                entityName: entityName,
+                id: id
+            };
+        }
+        
+        /**
+         * Returns list of records for the entity.
+         */
+        function getList(entityName) {
+            return loadDatastore()
+                .then(function(datastore) {
+                    if (!datastore[entityName]) {
+                        datastore[entityName] = [];
+                    }
+                    return $q.when(datastore[entityName]);
+                })
+                .catch(Exception.catcher('GET list request failed for '+entityName));
+        }
+        
+        /**
+         * Returns record of an entity as per its id.
+         */
+        function getById(entityName, id) {
+            return getList(entityName)
+                .then(function(collection) {
+                    return _.find(collection, { id: +id });
+                })
+                .catch(Exception.catcher('GET request failed for '+entityName+' with id '+id));
+        }
+        
+        /**
+         * Returns either list of records or a single entity based on url.
+         */
+        function get(url) {
+            var oUrlDetail = parseUrl(url);
+            var promise;
+            if (oUrlDetail.id) {
+                return getById(oUrlDetail.entityName, oUrlDetail.id);
+            } else {
+                return getList(oUrlDetail.entityName);
+            }
+        }
+        
+        /**
+         * Creates new records for the entity.
+         */
+        function post(url, oEntity) {
+            var oUrlDetail = parseUrl(url);
+            return getList(oUrlDetail.entityName)
+                .then(function(collection) {
+                    var maxId = _.maxBy(collection, 'id').id;
+                    oEntity.id = maxId + 1;
+                    collection.push(oEntity);
+                    return oEntity;
+                })
+                .catch(Exception.catcher('POST request failed for '+oUrlDetail.entityName));
+        }
+        
+        /**
+         * Updates the records of an entity.
+         */
+        function put(url, oEntity) {
+            var oUrlDetail = parseUrl(url);
+            return getList(oUrlDetail.entityName)
+                .then(function(collection) {
+                    var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
+                    collection.splice(entityIndex, 1, oEntity);
+                    return oEntity;
+                })
+                .catch(Exception.catcher('PUT request failed for '+oUrlDetail.entityName+' with id '+oEntity.id));
+        }
+        
+        /**
+         * Removes the entity specified in url from the collection of that entity.
+         */
+        function remove(url) {
+            var oUrlDetail = parseUrl(url);
+            return getList(oUrlDetail.entityName)
+                .then(function(collection) {
+                    var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
+                    collection.splice(entityIndex, 1);
+                })
+                .catch(Exception.catcher('DELETE request failed for '+oUrlDetail.entityName+' with id '+oEntity.id));
+        }
+    }
+        
     return InMemoryDatastoreService;
 });

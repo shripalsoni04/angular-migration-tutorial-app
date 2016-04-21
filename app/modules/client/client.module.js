@@ -3,5 +3,5 @@ define([
    'modules/client/client.service'
 ], function(angular, ClientService){
     return angular.module('app.client', [])
-        .service('Client', ClientService);
+        .service('ClientService', ClientService);
 });

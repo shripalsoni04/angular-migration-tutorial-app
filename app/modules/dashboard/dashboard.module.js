@@ -4,7 +4,7 @@
 
 define([
     'angular',
-    'modules/dashboard/route-config',
+    'modules/dashboard/dashboard.routes',
     'modules/dashboard/dashboard.controller',
     'modules/project/project.module'
 ], function(angular, dashboardRouteConfig, DashboardCtrl, projectModule) {
