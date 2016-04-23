@@ -40,7 +40,7 @@ define(function() {
         
         function init(){
             vm.isShowAction = !!vm.isShowAction;
-        };
+        }
         
         init();
     }

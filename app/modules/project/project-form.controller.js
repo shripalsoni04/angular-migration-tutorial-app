@@ -6,7 +6,7 @@
 define([
     'modules/project/project.model'
 ],
-    function(ProjectModel) {
+    function (ProjectModel) {
         'use strict';
 
         function ProjectFormCtrl($stateParams, $state, ProjectService, ClientService, EmployeeService) {
@@ -36,42 +36,42 @@ define([
             }
 
             function save() {
-                ProjectService.save(vm.project).then(function(result) {
+                ProjectService.save(vm.project).then(function () {
                     window.history.back();
                 });
             }
 
             function loadProjectById(projectId) {
                 return ProjectService.getById(projectId);
-            };
+            }
 
             function loadClients() {
-                return ClientService.get().then(function(lstClients) {
+                return ClientService.get().then(function (lstClients) {
                     Array.prototype.push.apply(vm.lstClients, lstClients);
                 });
-            };
+            }
 
             function loadEmployees() {
-                return EmployeeService.get().then(function(lstEmployees) {
+                return EmployeeService.get().then(function (lstEmployees) {
                     Array.prototype.push.apply(vm.lstEmployees, lstEmployees);
                     updateUnmappedEmpList();
                 });
-            };
+            }
 
             /**
              * Updates unmapped employee list on add/remove of an employee or on load of a project. 
              */
             function updateUnmappedEmpList() {
-                var projectEmployeeId = vm.project ? vm.project.employees.map(employee => employee.id) : [];
-                vm.unmappedEmployees = vm.lstEmployees.filter(function(employee) {
+                var projectEmployeeId = vm.project ? vm.project.employees.map(function (employee) { return employee.id }) : [];
+                vm.unmappedEmployees = vm.lstEmployees.filter(function (employee) {
                     return projectEmployeeId.indexOf(employee.id) === -1;
                 });
-            };
+            }
 
             function init() {
                 var projectId = $stateParams.id;
                 if (projectId) {
-                    loadProjectById(projectId).then(function(project) {
+                    loadProjectById(projectId).then(function (project) {
                         vm.project = _.cloneDeep(project);
                         updateUnmappedEmpList();
                     });
@@ -81,7 +81,7 @@ define([
 
                 loadClients();
                 loadEmployees();
-            };
+            }
 
             init();
 

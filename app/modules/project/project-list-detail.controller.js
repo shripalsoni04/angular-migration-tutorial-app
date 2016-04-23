@@ -37,15 +37,15 @@ define(function() {
                 Array.prototype.push.apply(vm.lstProjects, lstProjects);
                 selectFirstProject();
             });
-        };
+        }
 
         function selectFirstProject() {
             vm.selectedProject = vm.lstProjects[0];
-        };
+        }
 
         function init() {
             loadProjectList();
-        };
+        }
 
         init();
     }

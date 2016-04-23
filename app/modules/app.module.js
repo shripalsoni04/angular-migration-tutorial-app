@@ -7,7 +7,7 @@ define([
     'angular-bootstrap',
     'angular-ui-router',
     'modules/app',
-    'modules/route-config',
+    'modules/app.routes',
     'modules/dashboard/dashboard.module',
     'modules/project/project.module',
     'modules/client/client.module',
@@ -18,12 +18,17 @@ define([
     'use strict';
 
     return angular.module('app', [
+        /* 3rd-party modules */
         'ui.router',
         'ui.bootstrap',
+        
+        /* Feature modules */
         dashboardModule.name,
         projectModule.name,
         clientModule.name,
         employeeModule.name,
+        
+        /* Shared modules */
         sharedModule.name
     ])
         .config(appRouteConfig)

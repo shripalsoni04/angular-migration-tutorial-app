@@ -88,7 +88,6 @@ define(function() {
          */
         function get(url) {
             var oUrlDetail = parseUrl(url);
-            var promise;
             if (oUrlDetail.id) {
                 return getById(oUrlDetail.entityName, oUrlDetail.id);
             } else {
@@ -135,7 +134,7 @@ define(function() {
                     var entityIndex = collection.indexOf(_.find(collection, { 'id': +oUrlDetail.id }))
                     collection.splice(entityIndex, 1);
                 })
-                .catch(Exception.catcher('DELETE request failed for '+oUrlDetail.entityName+' with id '+oEntity.id));
+                .catch(Exception.catcher('DELETE request failed for '+oUrlDetail.entityName+' with id '+oUrlDetail.id));
         }
     }
         
