@@ -10,7 +10,6 @@
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.11.2",
-    "eslint-config-defaults": "^9.0.0",
     "gulp": "^3.9.1",
     "gulp-ruby-sass": "^2.0.6"
   }

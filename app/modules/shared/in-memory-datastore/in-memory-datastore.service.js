@@ -19,8 +19,8 @@ define(function() {
         // Service Implementation        
         var datastore = null;
         var datastoreReadyPromise = $q(function(resolve) {
-            require([inMemoryDatastorePath], function(datastore) {
-                datastore = datastore;
+            require([inMemoryDatastorePath], function(loadedDatastore) {
+                datastore = loadedDatastore;
                 resolve(datastore);
             });
         })

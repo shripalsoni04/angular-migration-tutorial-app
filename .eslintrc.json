@@ -1,5 +1,5 @@
 {   
-    "extends": "defaults",
+    "extends": "eslint:recommended",
     "env": {
         "amd": true,
         "browser": true

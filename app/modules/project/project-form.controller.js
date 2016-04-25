@@ -59,7 +59,8 @@ define([
             }
 
             /**
-             * Updates unmapped employee list on add/remove of an employee or on load of a project. 
+             * Updates unmapped employee list on add/remove of an employee or on 
+             * load of a project. 
              */
             function updateUnmappedEmpList() {
                 var projectEmployeeId = vm.project ? vm.project.employees.map(function (employee) { return employee.id }) : [];
