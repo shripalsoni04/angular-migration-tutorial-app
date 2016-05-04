@@ -2,7 +2,8 @@
     "extends": "eslint:recommended",
     "env": {
         "amd": true,
-        "browser": true
+        "browser": true,
+        "jasmine": true
     },
     "globals": {
        "_": true
