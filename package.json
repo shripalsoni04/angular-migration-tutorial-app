@@ -9,7 +9,6 @@
   "author": "Shripal Soni",
   "license": "MIT",
   "devDependencies": {
-    "angular-mocks": "^1.5.5",
     "browser-sync": "^2.11.2",
     "gulp": "^3.9.1",
     "gulp-ruby-sass": "^2.0.6",

@@ -1,8 +1,9 @@
 define([
-     
+    'angular',
+    'angular-mocks',
+    'modules/project/project.module' 
 ], function(){
     describe('Project Main Controller ', function(){
-        
         beforeEach(module('app.project'));
         
         var ctrl;
