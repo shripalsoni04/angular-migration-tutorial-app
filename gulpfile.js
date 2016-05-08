@@ -4,18 +4,18 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
-  return sass('app/styles/scss/**/*.scss')
-    .pipe(gulp.dest('app/styles/css'))
+  return sass('client/styles/scss/**/*.scss')
+    .pipe(gulp.dest('client/styles/css'))
     .pipe(reload({ stream:true }));
 });
 
 gulp.task('serve', ['sass'], function(){
     browserSync({
     server: {
-      baseDir: 'app'
+      baseDir: 'client'
     }
   });
   
-  gulp.watch(['app/**/*.js', 'app/**/*.html', '!app/bower_components/**/*.*'], reload);
-  gulp.watch('app/styles/scss/**/*.scss', ['sass']);
+  gulp.watch(['client/**/*.js', 'client/**/*.html', '!client/bower_components/**/*.*'], reload);
+  gulp.watch('client/styles/scss/**/*.scss', ['sass']);
 });
