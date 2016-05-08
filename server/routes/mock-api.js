@@ -1,4 +1,4 @@
-var inMemoryAPI = function (app, endPoint, mockData) {
+var mockAPI = function (app, endPoint, mockData) {
 
     var data = [];
 
@@ -90,4 +90,4 @@ var inMemoryAPI = function (app, endPoint, mockData) {
 
     init();
 }
-module.exports = inMemoryAPI;
+module.exports = mockAPI;
