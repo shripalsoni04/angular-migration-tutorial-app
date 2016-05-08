@@ -4,6 +4,6 @@
 
 define(function() {
     return {
-        apiEndPoint: 'http://domain.com/api/'
+        apiEndPoint: 'http://localhost:9000/api/'
     }
 });

@@ -20,5 +20,9 @@
     "phantomjs": "^2.1.7",
     "phantomjs-prebuilt": "^2.1.7",
     "requirejs": "^2.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
   }
 }
