@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
+var exec = require('child_process').exec;
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
@@ -9,7 +10,16 @@ gulp.task('sass', function() {
     .pipe(reload({ stream:true }));
 });
 
-gulp.task('serve', ['sass'], function(){
+gulp.task('serve', ['sass'], function(cb){
+    // starting api server
+    exec('node server', function(err, stdout, stderr){
+      /*eslint no-console: "off" */
+      console.info(stdout);
+      console.error(stderr);
+      cb(err);
+    });
+    
+    // starting client server
     browserSync({
     server: {
       baseDir: 'client'

@@ -15,5 +15,6 @@ app.use(function(req, res, next){
 routes(app);
 
 var server = app.listen(9000, function(){
+    /*eslint no-console: "off" */
     console.log("Listening on port %s...", server.address().port);
 });
