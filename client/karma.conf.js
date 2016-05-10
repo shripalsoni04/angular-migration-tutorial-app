@@ -16,17 +16,19 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'test-main.js',
-      {pattern: 'bower_components/angular/angular.min.js', included: false},
-      {pattern: 'bower_components/angular-mocks/angular-mocks.js', included: false},
+      'bower_components/angular/angular.min.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       {pattern: 'bower_components/angular-ui-router/release/angular-ui-router.min.js', included: false},
       {pattern: 'bower_components/bootstrap/dist/js/bootstrap.min.js', included: false},
       {pattern: 'bower_components/jquery/dist/jquery.min.js', included: false},
       {pattern: 'bower_components/es6-promise/es6-promise.min.js', included: false},
       {pattern: 'bower_components/lodash/dist/lodash.min.js', included: false},
       {pattern: 'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js', included: false},
+      {pattern: 'mock-data/*.js', included: false},
       {pattern: 'modules/*.js', included: false},
       {pattern: 'modules/**/*.js', included: false},
-      {pattern: 'modules/**/*.spec.js', included: false}
+      {pattern: 'modules/**/*.spec.js', included: false},
+      'modules/project/project-employee-list.directive.html'
     ],
 
 
@@ -39,6 +41,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'modules/**/*.html': ['ng-html2js']
     },
 
 
@@ -76,6 +79,10 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+    
+    ngHtml2JsPreprocessor: {
+      moduleName: 'templates'
+    }
   })
 }

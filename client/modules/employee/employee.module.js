@@ -4,10 +4,11 @@
 
 define([
     'angular',
+    'modules/shared/shared.module',
     'modules/employee/employee.service'
-], function(angular, EmployeeService) {
+], function(angular, sharedModule, EmployeeService) {
     'use strict';
 
-    return angular.module('app.employee', [])
+    return angular.module('app.employee', [sharedModule.name])
         .service('EmployeeService', EmployeeService);
 });

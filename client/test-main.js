@@ -36,7 +36,6 @@ require.config({
     shim: {
         'angular': { 'exports': 'angular' },
         'angular-ui-router': ['angular'],
-        'angular-bootstrap': ['angular'],
-        'angular-mocks': ['angular']
+        'angular-bootstrap': ['angular']
     }
 });

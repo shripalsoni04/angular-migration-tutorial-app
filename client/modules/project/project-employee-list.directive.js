@@ -33,7 +33,7 @@ define(function() {
         
         vm.removeEmployee = removeEmployee;
         
-        function removeEmployee(employee, index){
+        function removeEmployee(index){
             vm.employees.splice(index, 1);
             vm.onEmployeeRemove();
         }
