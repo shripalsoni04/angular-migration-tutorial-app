@@ -1,7 +1,8 @@
 define([
+    'angular',
     'modules/project/project.module',
     'mock-data/employee'
-], function (projectModule, employeeMockData) {
+], function (angular, projectModule, employeeMockData) {
     'use strict';
 
     describe('projectEmployeeList Directive', function () {
