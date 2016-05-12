@@ -6,14 +6,14 @@ define([
     'angular',
     'angular-bootstrap',
     'angular-ui-router',
-    './app',
     './app.routes',
+    './app.controller',
     './dashboard/dashboard.module',
     './project/project.module',
     './client/client.module',
     './employee/employee.module',
     './shared/shared.module'
-], function(angular, uiBootstrap, uiRouter, AppCtrl, appRouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule) {
+], function(angular, uiBootstrap, uiRouter, appRouteConfig, AppCtrl, dashboardModule, projectModule, clientModule, employeeModule, sharedModule) {
     'use strict';
 
     return angular.module('app', [
