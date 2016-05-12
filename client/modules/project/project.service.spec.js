@@ -1,5 +1,5 @@
 define([
-    'modules/project/project.module',
+    './project.module',
     'modules/shared/config',
     'mock-data/project',
     'lodash'

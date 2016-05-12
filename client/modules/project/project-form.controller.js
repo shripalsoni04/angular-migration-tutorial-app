@@ -4,7 +4,7 @@
  */
 
 define([
-    'modules/project/project.model'
+    './project.model'
 ],
     function (ProjectModel) {
         'use strict';

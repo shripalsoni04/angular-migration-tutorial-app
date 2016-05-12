@@ -8,12 +8,12 @@ define([
     'modules/client/client.module',
     'modules/employee/employee.module',
     'modules/shared/shared.module',
-    'modules/project/project.routes',
-    'modules/project/project.controller',
-    'modules/project/project.service',
-    'modules/project/project-list-detail.controller',
-    'modules/project/project-form.controller',
-    'modules/project/project-employee-list.directive'
+    './project.routes',
+    './project.controller',
+    './project.service',
+    './project-list-detail.controller',
+    './project-form.controller',
+    './project-employee-list.directive'
 ], function(angular, uiRouterModule, clientModule, employeeModule, sharedModule, projectRouteConfig, ProjectCtrl, ProjectService, ProjectListDetailCtrl, ProjectFormCtrl, projectEmployeeListDirective) {
     'use strict';
 

@@ -1,7 +1,7 @@
 define([
     'modules/shared/config',
     'mock-data/project',
-    'modules/project/project.module'
+    './project.module'
 ], function (oConfig, projectMockData, projectModule) {
    'use strict';
 

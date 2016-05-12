@@ -1,6 +1,6 @@
 define([
    'angular',
-   'modules/shared/logger/logger.service'
+   './logger.service'
 ], function(angular, LoggerService){
     return angular.module('app.shared.logger', [])
         .service('Logger', LoggerService);

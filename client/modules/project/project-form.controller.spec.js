@@ -4,7 +4,7 @@ define([
     'mock-data/project',
     'mock-data/client',
     'mock-data/employee',
-    'modules/project/project.module'
+    './project.module'
 ], function (_, oConfig, projectMockData, clientMockData, employeeMockData, projectModule) {
    'use strict';
 

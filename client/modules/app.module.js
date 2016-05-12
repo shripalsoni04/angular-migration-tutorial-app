@@ -6,14 +6,14 @@ define([
     'angular',
     'angular-bootstrap',
     'angular-ui-router',
-    'modules/app',
-    'modules/app.routes',
-    'modules/dashboard/dashboard.module',
-    'modules/project/project.module',
-    'modules/client/client.module',
-    'modules/employee/employee.module',
-    'modules/shared/shared.module',
-    'modules/shared/config'
+    './app',
+    './app.routes',
+    './dashboard/dashboard.module',
+    './project/project.module',
+    './client/client.module',
+    './employee/employee.module',
+    './shared/shared.module',
+    './shared/config'
 ], function(angular, uiBootstrap, uiRouter, AppCtrl, appRouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule, oConfig) {
     'use strict';
 
@@ -32,7 +32,5 @@ define([
         sharedModule.name
     ])
         .config(appRouteConfig)
-        .value('inMemoryDatastorePath', 'mock-data/datastore.js')
-        .value('inMemoryDatastoreApiEndPoint', oConfig.apiEndPoint)
         .controller('AppCtrl', AppCtrl);
 });

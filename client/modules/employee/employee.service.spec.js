@@ -1,5 +1,5 @@
 define([
-    'modules/employee/employee.module',
+    './employee.module',
     'modules/shared/config',
     'mock-data/employee'
 ], function(employeeModule, oConfig, employeeMockData){

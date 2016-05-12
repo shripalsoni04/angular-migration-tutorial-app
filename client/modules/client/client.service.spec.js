@@ -1,5 +1,5 @@
 define([
-    'modules/client/client.module',
+    './client.module',
     'modules/shared/config',
     'mock-data/client'
 ], function(clientModule, oConfig, clientMockData){

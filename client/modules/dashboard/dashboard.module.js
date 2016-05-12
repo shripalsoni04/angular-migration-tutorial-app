@@ -5,8 +5,8 @@
 define([
     'angular',
     'angular-ui-router',
-    'modules/dashboard/dashboard.routes',
-    'modules/dashboard/dashboard.controller',
+    './dashboard.routes',
+    './dashboard.controller',
     'modules/project/project.module'
 ], function(angular, uiRouterModule, dashboardRouteConfig, DashboardCtrl, projectModule) {
     'use strict';

@@ -1,6 +1,6 @@
 define([
     'angular',
-    'modules/project/project.module',
+    './project.module',
     'mock-data/employee'
 ], function (angular, projectModule, employeeMockData) {
     'use strict';

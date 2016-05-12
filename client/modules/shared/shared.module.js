@@ -4,9 +4,9 @@
 
 define([
     'angular',
-    'modules/shared/in-memory-datastore/in-memory-datastore.module',
-    'modules/shared/exception/exception.module',
-    'modules/shared/logger/logger.module'
+    './in-memory-datastore/in-memory-datastore.module',
+    './exception/exception.module',
+    './logger/logger.module'
 ], function (angular, inMemoryDatastoreModule, exceptionModule, loggerModule) {
     'use strict';
 
