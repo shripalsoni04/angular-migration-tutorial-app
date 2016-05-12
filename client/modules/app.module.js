@@ -12,9 +12,8 @@ define([
     './project/project.module',
     './client/client.module',
     './employee/employee.module',
-    './shared/shared.module',
-    './shared/config'
-], function(angular, uiBootstrap, uiRouter, AppCtrl, appRouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule, oConfig) {
+    './shared/shared.module'
+], function(angular, uiBootstrap, uiRouter, AppCtrl, appRouteConfig, dashboardModule, projectModule, clientModule, employeeModule, sharedModule) {
     'use strict';
 
     return angular.module('app', [
