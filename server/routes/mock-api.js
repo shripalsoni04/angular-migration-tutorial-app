@@ -1,7 +1,10 @@
-var mockAPI = function (app, endPoint, mockData) {
+var _ = require('lodash');
+
+var mockAPI = function (app, endPoint, mockData, options) {
 
     var data = [];
-
+    options = options || {};
+    
     function setMockData(mockData) {
         if (mockData) {
             if (typeof mockData === 'object' && mockData.length !== undefined) {
@@ -14,30 +17,21 @@ var mockAPI = function (app, endPoint, mockData) {
 
     function findById(id) {
         id = +id;
-        var filteredData = data.filter(function (item) {
-            return item.id === id;
-        });
-        return filteredData[0];
+        return _.find(data, {id: id});
     }
 
     function findIndexById(id) {
         return data.indexOf(findById(id));
     }
 
-    function getMaxId() {
-        var sortedData = data.sort(function (a, b) {
-            return b.id - a.id;
-        });
-        return sortedData[0].id;
-    }
-
     function getNextId() {
-        var maxId = getMaxId();
+        var maxId = _.max(_.map(data, 'id'))
         return ++maxId;
     }
 
     function createAPI(app) {
         app.get(endPoint, function (req, res) {
+            data = _.orderBy(data, 'createdDate');
             return res.json({
                 status: 'success',
                 data: data
@@ -55,6 +49,14 @@ var mockAPI = function (app, endPoint, mockData) {
         app.post(endPoint, function (req, res) {
             var newData = req.body;
             newData.id = getNextId();
+            newData.createdDate = +new Date();
+            newData.createdBy = {
+                id: 1,
+                text: 'system'
+            };
+            if(options.post && options.post.beforeSave){
+                newData = options.post.beforeSave(newData);
+            }
             data.push(newData);
             return res.json({
                 status: 'success',
@@ -66,7 +68,17 @@ var mockAPI = function (app, endPoint, mockData) {
             var id = req.params.id;
             var entity = findById(id);
             var index = data.indexOf(entity);
-            data.splice(index, 1, req.body);
+            var newData = _.cloneDeep(entity);
+            _.merge(newData, req.body);
+            newData.updatedDate = +new Date();
+            newData.updatedBy = {
+                id: 1,
+                text: 'system'
+            };
+            if(options.put && options.put.beforeSave){
+                newData = options.put.beforeSave(newData);
+            }
+            data.splice(index, 1, newData);
             return res.json({
                 status: 'success',
                 data: data[index]
