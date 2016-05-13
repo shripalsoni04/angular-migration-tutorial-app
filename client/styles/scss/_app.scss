@@ -53,3 +53,16 @@ $page-header-height: 56px;
 form .row{
     margin-bottom: 15px;
 }
+
+
+@media (max-width: #{$breakpoint-sm-desktop - 1}){
+    .app-container{ 
+        > nav{
+            width: 150px;
+        }
+        
+        .page-container{
+            width: calc(100% - 150px);
+        }
+    }
+}
