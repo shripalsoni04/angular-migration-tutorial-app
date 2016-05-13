@@ -1,10 +1,10 @@
 <div class="row project-list-detail-content-container">
     <div class="col-md-3">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-9 col-xs-10">
                 <input type="text" placeholder="Filter..." ng-model="projectListDetailCtrl.filterText" class="form-control" />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3 col-xs-2">
                 <button type="button" class="btn btn-primary" title="Add New Project" ng-click="projectListDetailCtrl.addProject()">
                     <i class="fa fa-plus"></i>
                 </button>
@@ -22,10 +22,10 @@
     </div>
     <div class="col-md-9 project-detail" ng-if="projectListDetailCtrl.selectedProject">
         <div class="detail-header row">
-            <div class="col-md-10">
+            <div class="col-md-9 col-xs-8">
                 <h3>{{projectListDetailCtrl.selectedProject.name}}</h3>
             </div>
-            <div class="col-md-2 action-container">
+            <div class="col-md-3 col-xs-4 action-container">
                 <span class="pull-right">
                     <button class="btn btn-link" title="Edit"
                         ui-sref="app.project.edit({id: projectListDetailCtrl.selectedProject.id})"><i class="fa fa-pencil-square-o"></i></button>
