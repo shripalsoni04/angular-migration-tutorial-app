@@ -5,7 +5,7 @@
             {{project.name}}
         </div>
         <div class="card-action">
-            <button class="btn btn-link" title="edit" ui-sref="app.project.edit({id: project.id})">
+            <button type="button" class="btn btn-link" title="edit" ng-click="dashboardCtrl.editProject(project.id)">
                 <i class="fa fa-pencil"></i>
             </button>
         </div>

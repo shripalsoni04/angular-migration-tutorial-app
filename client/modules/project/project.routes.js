@@ -17,19 +17,28 @@ define(function() {
                 url: 'project',
                 templateUrl: 'modules/project/project-list-detail.html',
                 controller: 'ProjectListDetailCtrl',
-                controllerAs: 'projectListDetailCtrl'
+                controllerAs: 'projectListDetailCtrl',
+                params: {
+                    selectedProjectId: null
+                }
             })
             .state('app.project.add', {
                 url: 'project/add',
                 templateUrl: 'modules/project/project-form.html',
                 controller: 'ProjectFormCtrl',
-                controllerAs: 'projectFormCtrl'
+                controllerAs: 'projectFormCtrl',
+                params: {
+                    previousState: null
+                }
             })
             .state('app.project.edit', {
                 url: 'project/:id',
                 templateUrl: 'modules/project/project-form.html',
                 controller: 'ProjectFormCtrl',
-                controllerAs: 'projectFormCtrl'
+                controllerAs: 'projectFormCtrl',
+                params: {
+                    previousState: null
+                }
             });
 
         $urlRouterProvider.otherwise('/project');

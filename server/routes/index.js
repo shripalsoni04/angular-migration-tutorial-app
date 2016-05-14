@@ -8,18 +8,26 @@ var appRouter = function(app){
     mockAPI(app, '/api/employee', mockData.employee);
     mockAPI(app, '/api/project', mockData.project, {
         post: {
-           beforeSave: setClientDataById
+           beforeSave: transformData
         },
         put: {
-            beforeSave: setClientDataById
+           beforeSave: transformData
         }
     });
     
     
-    function setClientDataById(oData){
+    function transformData(oData){
+        // setting client object based on clientId coming in post/put request
         if(oData.clientId){
             oData.client = _.find(mockData.client, {id: oData.clientId});
             delete oData.clientId;
+        }
+        
+        // setting employee objects based on emploee id coming in post/put request.
+        if(oData.employees && oData.employees.length){
+            oData.employees = _.map(oData.employees, function(employeeId){
+                return _.find(mockData.employee, {id: employeeId});
+            });
         }
         return oData;
     }

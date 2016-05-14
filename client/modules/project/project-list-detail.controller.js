@@ -2,10 +2,12 @@
  * Controller for showing project list and selected project's details. 
  */
 
-define(function() {
+define([
+    'lodash'
+],function(_) {
     'use strict';
 
-    function ProjectListDetailCtrl($state, ProjectService) {
+    function ProjectListDetailCtrl($state, $stateParams, ProjectService) {
         var vm = this;
         vm.lstProjects = [];
         vm.selectedProject = null;
@@ -13,16 +15,23 @@ define(function() {
 
         vm.showDetail = showDetail;
         vm.addProject = addProject;
+        vm.editProject = editProject;
         vm.deleteProject = deleteProject;
 
         function addProject() {
-            $state.go('app.project.add');
+            $state.go('app.project.add', {previousState: 'app.project.list-detail'});
         }
 
+        function editProject(projectId){
+            $state.go('app.project.edit', {id: projectId, previousState: 'app.project.list-detail'}); 
+        }
+        
         function deleteProject(oProject) {
             if (confirm('Are you sure you want to delete this project?')) {
                 ProjectService.delete(oProject).then(function() {
-                    loadProjectList();
+                    loadProjectList().then(function(){
+                        selectFirstProject();
+                    });
                 });
             }
         }
@@ -44,12 +53,21 @@ define(function() {
         }
 
         function init() {
-            loadProjectList();
+            loadProjectList().then(function(){
+                // if this state is navigated from project-form state, it will have selectedProjectId parameter.
+                // If it is available, making that project as selected.
+                var selectedProjectId = $stateParams.selectedProjectId;
+                if(selectedProjectId){
+                    showDetail(_.find(vm.lstProjects, {id: selectedProjectId}))
+                }else{
+                    selectFirstProject();
+                }
+            });
         }
 
         init();
     }
 
-    ProjectListDetailCtrl.$inject = ['$state', 'ProjectService'];
+    ProjectListDetailCtrl.$inject = ['$state', '$stateParams', 'ProjectService'];
     return ProjectListDetailCtrl;
 });

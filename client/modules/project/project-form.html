@@ -3,12 +3,12 @@
         <div class="col-md-4" ng-class="{'has-error': projectForm.projectName.$invalid && projectForm.projectName.$dirty}">
             <label for="projectName" class="control-label">Project Name*</label>
             <input type="text" name="projectName" class="form-control" ng-model="projectFormCtrl.project.name" required/>
-            <span class="help-block" ng-show="projectForm.projectName.$invalid && projectForm.projectName.$dirty">Project name is required.</span>
+            <span class="help-block" ng-show="projectForm.projectName.$invalid && projectForm.projectName.$dirty">Please enter Project Name.</span>
         </div>
         <div class="col-md-4">
             <label for="client" class="control-label">Client</label>
-            <select name="client" class="form-control" ng-model="projectFormCtrl.project.client" 
-                ng-options="client as client.name for client in projectFormCtrl.lstClients track by client.id"></select>
+            <select name="client" class="form-control" ng-model="projectFormCtrl.project.clientId" 
+                ng-options="client.id as client.name for client in projectFormCtrl.lstClients"></select>
         </div>
        <div class="col-md-4">
             <label for="isCompleted">Is Completed?</label>
@@ -16,23 +16,27 @@
         </div> 
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" ng-class="{'has-error': projectForm.startDate.$invalid && projectForm.startDate.$dirty}">
             <label for="startDate" class="control-label">Start Date</label>
             <p class="input-group">
-                <input name="startDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.startDate" is-open="projectFormCtrl.startDatePicker.isOpen" />
+                <input name="startDate" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.startDate" 
+                    is-open="projectFormCtrl.startDatePicker.isOpen" datepicker-options="{maxDate: projectFormCtrl.project.endDate}" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="projectFormCtrl.startDatePicker.isOpen = !projectFormCtrl.startDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p>
+            <span class="help-block" ng-show="projectForm.startDate.$invalid && projectForm.startDate.$dirty">Please enter date in MM/DD/YYYY format.</span>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" ng-class="{'has-error': projectForm.endDate.$invalid && projectForm.endDate.$dirty}">
             <label for="endDate" class="control-label">End Date</label>
             <p class="input-group">
-                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.endDate" is-open="projectFormCtrl.endDatePicker.isOpen" />
+                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="projectFormCtrl.project.endDate" 
+                    is-open="projectFormCtrl.endDatePicker.isOpen" datepicker-options="{minDate: projectFormCtrl.project.startDate}" />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="projectFormCtrl.endDatePicker.isOpen = !projectFormCtrl.endDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p> 
+            <span class="help-block" ng-show="projectForm.endDate.$invalid && projectForm.endDate.$dirty">Please enter date in MM/DD/YYYY format.</span>
         </div>
     </div>
     <div class="row">
@@ -62,7 +66,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
-            <button class="btn btn-default" ng-click="projectFormCtrl.cancel()">Cancel</button>
+            <button class="btn btn-default" type="button" ng-click="projectFormCtrl.cancel()">Cancel</button>
             <button class="btn btn-primary" ng-disabled="projectForm.$invalid">Save</button>
         </div>
     </div>

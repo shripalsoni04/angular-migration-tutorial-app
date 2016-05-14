@@ -4,12 +4,14 @@
  */
 
 define([
+    'lodash',
+    './project.model',
     'modules/shared/config'
-], function(oConfig) {
+], function (_, ProjectAPIModels, oConfig) {
     'use strict';
-    
+
     ProjectService.$inject = ['$http', 'Exception'];
-    
+
     function ProjectService($http, Exception) {
         /**
          * URL for project api.
@@ -19,61 +21,82 @@ define([
         /**
          * Returns all projects list.
          */
-        this.get = function() {
+        this.get = function () {
             return $http
                 .get(this.url)
                 .then(extractData)
                 .catch(Exception.catcher('GET list request failed for project'));
         };
 
-        this.getById = function(projectId) {
+        this.getById = function (projectId) {
             return $http
                 .get(this.url + '/' + projectId)
                 .then(extractData)
-                .catch(Exception.catcher('GET request for project with id '+projectId+' failed.'));
+                .catch(Exception.catcher('GET request for project with id ' + projectId + ' failed.'));
         };
 
-        this.insert = function(oProject) {
+        this.insert = function (oProject) {
             return $http
                 .post(this.url, oProject)
                 .then(extractData)
                 .catch(Exception.catcher('POST request failed for project'));
         };
 
-        this.update = function(oProject) {
+        this.update = function (oProject) {
             return $http
                 .put(this.url + '/' + oProject.id, oProject)
                 .then(extractData)
-                .catch(Exception.catcher('PUT request for project with id '+oProject.id+' failed.'));
+                .catch(Exception.catcher('PUT request for project with id ' + oProject.id + ' failed.'));
 
         };
 
-        this.save = function(oProject) {
+        this.save = function (oProject) {
             oProject.startDate = typeof oProject.startDate === 'object' && oProject.startDate ? +oProject.startDate : oProject.startDate;
             oProject.endDate = typeof oProject.endDate === 'object' && oProject.endDate ? +oProject.endDate : oProject.endDate;
             return oProject && oProject.id ? this.update(oProject) : this.insert(oProject);
         };
 
-        this.delete = function(oProject) {
+        this.delete = function (oProject) {
             return $http
                 .delete(this.url + '/' + oProject.id)
-                .catch(Exception.catcher('DELETE request for project with id '+oProject.id+' failed.'));
+                .catch(Exception.catcher('DELETE request for project with id ' + oProject.id + ' failed.'));
 
         };
 
         /**
          * Returns only projects with are not in completed status.
          */
-        this.getActiveProjects = function() {
-            return this.get().then(function(lstProjects) {
-                return lstProjects.filter(function(project) {
+        this.getActiveProjects = function () {
+            return this.get().then(function (lstProjects) {
+                return lstProjects.filter(function (project) {
                     return !project.isCompleted;
                 });
             });
         };
         
-        function extractData(response){
-            return response.data.data;
+        /**
+         * Converts data coming from backend to ProjectAPIGetModel format for 
+         * data consistency across the screens.
+         */
+        function transformEntity(oRemoteData) {
+            var oAPIGetModel = new ProjectAPIModels.Get();
+            _.merge(oAPIGetModel, oRemoteData);
+            return oAPIGetModel.toLocal();
+        }
+        
+        /**
+         * Extracts data from response of ajax request.
+         */
+        function extractData(response) {
+            var data = response.data.data;
+            if (_.isArray(data)) {
+                data = _.map(data, function (oItem) {
+                    return transformEntity(oItem);
+                });
+            } else {
+                data = transformEntity(data);
+            }
+            return data;
         }
     }
 

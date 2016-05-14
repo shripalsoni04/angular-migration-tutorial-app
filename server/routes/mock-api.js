@@ -69,7 +69,7 @@ var mockAPI = function (app, endPoint, mockData, options) {
             var entity = findById(id);
             var index = data.indexOf(entity);
             var newData = _.cloneDeep(entity);
-            _.merge(newData, req.body);
+            _.extend(newData, req.body);
             newData.updatedDate = +new Date();
             newData.updatedBy = {
                 id: 1,

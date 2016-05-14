@@ -18,7 +18,12 @@ module.exports = [
             { id: 2, name: 'Employee 2', role: 'BackEnd Developer', email: 'emp2@domain.com' },
             { id: 3, name: 'Employee 3', role: 'Tester', email: 'emp3@domain.com' },
             { id: 4, name: 'Employee 4', role: 'Project Manager', email: 'emp4@domain.com' }
-        ]
+        ],
+        createdDate: 1463111527995,
+        createdBy: {
+            id: 1,
+            name: 'system'
+        }
     }, {
         id: 2,
         name: 'Project 2',
@@ -36,7 +41,12 @@ module.exports = [
         employees: [
             { id: 4, name: 'Employee 4', role: 'Project Manager', email: 'emp4@domain.com' },
             { id: 5, name: 'Employee 5', role: 'FullStack Developer', email: 'emp5@domain.com' }
-        ]
+        ],
+        createdDate: 1463111537995,
+        createdBy: {
+            id: 1,
+            name: 'system'
+        }
     }, {
         id: 3,
         name: 'Project 3',
@@ -55,7 +65,12 @@ module.exports = [
             { id: 2, name: 'Employee 2', role: 'BackEnd Developer', email: 'emp2@domain.com' },
             { id: 3, name: 'Employee 3', role: 'Tester', email: 'emp3@domain.com' },
             { id: 4, name: 'Employee 4', role: 'Project Manager', email: 'emp4@domain.com' }
-        ]
+        ],
+        createdDate: 1463111547995,
+        createdBy: {
+            id: 1,
+            name: 'system'
+        }
     }, {
         id: 4,
         name: 'Project 4',
@@ -74,6 +89,11 @@ module.exports = [
             { id: 1, name: 'Employee 1', role: 'FrontEnd Developer', email: 'emp1@domain.com' },
             { id: 3, name: 'Employee 3', role: 'Tester', email: 'emp3@domain.com' },
             { id: 4, name: 'Employee 4', role: 'Project Manager', email: 'emp4@domain.com' }
-        ]
+        ],
+        createdDate: 1463111557995,
+        createdBy: {
+            id: 1,
+            name: 'system'
+        }
     }
 ];

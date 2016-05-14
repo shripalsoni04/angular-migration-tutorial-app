@@ -2,7 +2,7 @@
 
 require.config({
     paths: {
-        'angular': 'bower_components/angular/angular',
+        'angular': 'bower_components/angular/angular.min',
         'angular-ui-router': 'bower_components/angular-ui-router/release/angular-ui-router.min',
         'bootstrap': 'bower_components/bootstrap/dist/bootstrap.min',
         'jquery': 'bower_components/jquery/jquery.min',
