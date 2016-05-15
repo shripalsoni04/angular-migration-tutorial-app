@@ -1,27 +1,16 @@
 /**
- * Employee service for handling CRUD operation.
+ * Service for handling backend communication of employee entity. 
  */
 
 define([
-    'modules/shared/config'
-], function(oConfig) {
+    './employee.model'
+], function(EmployeeAPIModels) {
     'use strict';
     
-    EmployeeService.$inject = ['$http', 'Exception'];
+    EmployeeService.$inject = ['baseServiceFactory'];
     
-    function EmployeeService($http, Exception) {
-        this.url = oConfig.apiEndPoint + 'employee';
-
-        /**
-         * Fetches all projects list.
-         */
-        this.get = function() {
-            return $http.get(this.url).then(function(response){
-                return response.data.data;
-            })
-            .catch(Exception.catcher('GET list request failed for client'));
-        };
-
+    function EmployeeService(BaseService) {
+        BaseService.call(this, 'employee', EmployeeAPIModels);
     }
     
     return EmployeeService;

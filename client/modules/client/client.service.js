@@ -1,22 +1,16 @@
+/**
+ * Service for handling backend communication of client entity. 
+ */
+
 define([
-    'modules/shared/config'
-], function(oConfig) {
+    './client.model'
+], function(ClientAPIModels) {
     'use strict';
 
-    ClientService.$inject = ['$http', 'Exception'];
+    ClientService.$inject = ['baseServiceFactory'];
 
-    function ClientService($http, Exception) {
-        this.url = oConfig.apiEndPoint + 'client';
-
-        /**
-         * Fetches all projects list.
-         */
-        this.get = function() {
-            return $http.get(this.url).then(function(response){
-                return response.data.data;
-            })
-            .catch(Exception.catcher('GET list request failed for client'));
-        };
+    function ClientService(BaseService) {
+        BaseService.call(this, 'client', ClientAPIModels);
     }
 
     return ClientService;
