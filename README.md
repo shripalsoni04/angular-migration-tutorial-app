@@ -8,3 +8,10 @@ Execute below commands:
 - typings install
     - If typings is not installed, install it by executing command `npm i -g typings`
 - gulp serve
+
+## Test
+For TDD
+- gulp tdd
+
+For single time test
+- gulp test
