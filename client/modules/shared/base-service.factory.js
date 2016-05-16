@@ -4,15 +4,16 @@
  */
 
 define([
-    './base-service'
-], function (BaseService) {
+    './base-service',
+    './exception/exception.service'
+], function (BaseService, ExceptionService) {
     'use strict';
 
-    baseServiceFactory.$inject = ['$http', 'Exception'];
-
-    function baseServiceFactory($http, Exception) {
+    baseServiceFactory.NAME = 'baseServiceFactory';
+    baseServiceFactory.$inject = ['$http', ExceptionService.NAME];
+    function baseServiceFactory($http, ExceptionService) {
         BaseService.$http = $http;
-        BaseService.Exception = Exception;
+        BaseService.Exception = ExceptionService;
         return BaseService;
     }
 

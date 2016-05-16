@@ -2,17 +2,17 @@
     <div class="col-md-3">
         <div class="row">
             <div class="col-md-9 col-xs-10">
-                <input type="text" placeholder="Filter..." ng-model="projectListDetailCtrl.filterText" class="form-control" />
+                <input type="text" placeholder="Filter..." ng-model="vm.filterText" class="form-control" />
             </div>
             <div class="col-md-3 col-xs-2">
-                <button type="button" class="btn btn-primary" title="Add New Project" ng-click="projectListDetailCtrl.addProject()">
+                <button type="button" class="btn btn-primary" title="Add New Project" ng-click="vm.addProject()">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
         </div>
         <ul class="project-list">
-            <li class="project-list-item" ng-repeat="project in projectListDetailCtrl.lstProjects | filter: {name: projectListDetailCtrl.filterText}" ng-click="projectListDetailCtrl.showDetail(project)"
-            ng-class="{'selected':projectListDetailCtrl.selectedProject.id === project.id}">
+            <li class="project-list-item" ng-repeat="project in vm.lstProjects | filter: {name: vm.filterText}" ng-click="vm.showDetail(project)"
+            ng-class="{'selected':vm.selectedProject.id === project.id}">
                 <span class="project-status-ind">
                     <i class="fa" ng-class="{'fa-check-circle': project.isCompleted, 'fa-circle-o': !project.isCompleted}"></i>
                 </span>
@@ -20,18 +20,18 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-9 project-detail" ng-if="projectListDetailCtrl.selectedProject">
+    <div class="col-md-9 project-detail" ng-if="vm.selectedProject">
         <div class="detail-header row">
             <div class="col-md-9 col-xs-8">
-                <h3>{{projectListDetailCtrl.selectedProject.name}}</h3>
+                <h3>{{vm.selectedProject.name}}</h3>
             </div>
             <div class="col-md-3 col-xs-4 action-container">
                 <span class="pull-right">
                     <button type="button" class="btn btn-link" title="Edit"
-                        ng-click="projectListDetailCtrl.editProject(projectListDetailCtrl.selectedProject.id)" >
+                        ng-click="vm.editProject(vm.selectedProject.id)" >
                             <i class="fa fa-pencil-square-o"></i>
                     </button>
-                    <button type="button" class="btn btn-link btn-danger" title="Delete" ng-click="projectListDetailCtrl.deleteProject(projectListDetailCtrl.selectedProject)">
+                    <button type="button" class="btn btn-link btn-danger" title="Delete" ng-click="vm.deleteProject(vm.selectedProject)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </span>
@@ -42,13 +42,13 @@
                 <div class="col-md-6">
                     <dl>
                         <dt>Client Name</dt>
-                        <dd>{{projectListDetailCtrl.selectedProject.client.name}}</dd>
+                        <dd>{{vm.selectedProject.client.name}}</dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl>
                         <dt>Status</dt>
-                        <dd>{{projectListDetailCtrl.selectedProject.isCompleted ? 'Completed' : 'Active'}}</dd>
+                        <dd>{{vm.selectedProject.isCompleted ? 'Completed' : 'Active'}}</dd>
                     </dl>
                 </div>
             </div>
@@ -56,13 +56,13 @@
                 <div class="col-md-6">
                     <dl>
                         <dt>Start Date</dt>
-                        <dd>{{projectListDetailCtrl.selectedProject.startDate | date}}</dd>
+                        <dd>{{vm.selectedProject.startDate | date}}</dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     <dl>
                         <dt>End Date</dt>
-                        <dd>{{projectListDetailCtrl.selectedProject.endDate | date}}</dd>
+                        <dd>{{vm.selectedProject.endDate | date}}</dd>
                     </dl>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="col-md-12">
                     <dl>
                         <dt>Details</dt>
-                        <dd>{{projectListDetailCtrl.selectedProject.details}}</dd>
+                        <dd>{{vm.selectedProject.details}}</dd>
                     </dl>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     <dl>
                         <dt>Employees</dt>
                         <dd>
-                            <project-employee-list employees="projectListDetailCtrl.selectedProject.employees">
+                            <project-employee-list employees="vm.selectedProject.employees">
                             </project-employee-list>
                         </dd>
                     </dl>

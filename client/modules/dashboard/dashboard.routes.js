@@ -2,7 +2,12 @@
  * Route configurations for dashboard functionality.
  */
 
-define(function() {
+define([
+   './dashboard.controller' 
+], function(DashboardCtrl) {
+    'use strict';
+    
+    dashboardRouteConfig.$inject = ['$stateProvider'];
     function dashboardRouteConfig($stateProvider) {
         'use strict';
 
@@ -10,11 +15,10 @@ define(function() {
             .state('app.dashboard', {
                 url: 'dashboard',
                 templateUrl: 'modules/dashboard/dashboard.html',
-                controller: 'DashboardCtrl',
-                controllerAs: 'dashboardCtrl'
+                controller: DashboardCtrl.NAME,
+                controllerAs: 'vm'
             });
     }
 
-    dashboardRouteConfig.$inject = ['$stateProvider'];
     return dashboardRouteConfig;
 });

@@ -3,15 +3,16 @@
  */
 
 define([
-    './client.model'
-], function(ClientAPIModels) {
+    './client.model',
+    'modules/shared/base-service.factory'
+], function(ClientAPIModels, baseServiceFactory) {
     'use strict';
 
-    ClientService.$inject = ['baseServiceFactory'];
-
+    ClientService.NAME = 'ClientService';
+    ClientService.$inject = [baseServiceFactory.NAME];  
     function ClientService(BaseService) {
         BaseService.call(this, 'client', ClientAPIModels);
     }
-
+    
     return ClientService;
 });

@@ -14,6 +14,7 @@
 define(function() {
     'use strict';
     
+    projectEmployeeListDirective.NAME = 'projectEmployeeList';
     function projectEmployeeListDirective() {
         return {
             scope: {},

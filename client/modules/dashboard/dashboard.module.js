@@ -10,8 +10,8 @@ define([
     './dashboard.controller'
 ], function(angular, uiRouterModule, projectModule, dashboardRouteConfig, DashboardCtrl) {
     'use strict';
-
+    
     return angular.module('app.dashboard', ['ui.router', projectModule.name])
         .config(dashboardRouteConfig)
-        .controller('DashboardCtrl', DashboardCtrl);
+        .controller(DashboardCtrl.NAME, DashboardCtrl);
 })

@@ -3,5 +3,5 @@ define([
    './logger.service'
 ], function(angular, LoggerService){
     return angular.module('app.shared.logger', [])
-        .service('Logger', LoggerService);
+        .service(LoggerService.NAME, LoggerService);
 });

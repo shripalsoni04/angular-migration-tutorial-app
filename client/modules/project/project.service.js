@@ -3,12 +3,13 @@
  */
 
 define([
-    './project.model'
-], function (ProjectAPIModels) {
+    './project.model',
+    'modules/shared/base-service.factory'
+], function (ProjectAPIModels, baseServiceFactory) {
     'use strict';
 
-    ProjectService.$inject = ['baseServiceFactory'];
-
+    ProjectService.NAME = 'ProjectService';
+    ProjectService.$inject = [baseServiceFactory.NAME];
     function ProjectService(BaseService) {
 
         BaseService.call(this, 'project', ProjectAPIModels);

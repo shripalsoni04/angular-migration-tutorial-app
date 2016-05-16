@@ -2,18 +2,22 @@
  * Routes for app module.
  */
 
-define(function() {
+define([
+    './app.controller'
+], function(AppCtrl) {
+    'use strict';
+    
+    RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function RouteConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('app', {
                 url: '/',
                 templateUrl: 'modules/app.html',
-                controller: 'AppCtrl',
-                controllerAs: 'appCtrl'
+                controller: AppCtrl.NAME,
+                controllerAs: 'vm'
             });
 
         $urlRouterProvider.otherwise('/dashboard');
     }
-    RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     return RouteConfig;
 });

@@ -10,5 +10,5 @@ define([
     'use strict';
 
     return angular.module('app.employee', [sharedModule.name])
-        .service('EmployeeService', EmployeeService);
+        .service(EmployeeService.NAME, EmployeeService);
 });

@@ -6,6 +6,6 @@ define([
     'use strict';
 
     return angular.module('app.shared.exception', [loggerModule.name])
-        .service('Exception', ExceptionService);
+        .service(ExceptionService.NAME, ExceptionService);
 
 });

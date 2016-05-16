@@ -3,10 +3,13 @@
  */
 
 define([
-    'lodash'
-],function(_) {
+    'lodash',
+    './project.service'
+],function(_, ProjectService) {
     'use strict';
-
+    
+    ProjectListDetailCtrl.NAME = 'ProjectListDetailCtrl';
+    ProjectListDetailCtrl.$inject = ['$state', '$stateParams', ProjectService.NAME];
     function ProjectListDetailCtrl($state, $stateParams, ProjectService) {
         var vm = this;
         vm.lstProjects = [];
@@ -67,7 +70,5 @@ define([
 
         init();
     }
-
-    ProjectListDetailCtrl.$inject = ['$state', '$stateParams', 'ProjectService'];
     return ProjectListDetailCtrl;
 });

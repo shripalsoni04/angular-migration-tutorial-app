@@ -1,8 +1,8 @@
 define([], function(){
     'use strict';
     
+    LoggerService.NAME = 'LoggerService';
     LoggerService.$inject = ['$log'];
-    
     function LoggerService($log){
         this.error = error;
         this.info = info;

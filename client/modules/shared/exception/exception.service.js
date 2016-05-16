@@ -1,14 +1,16 @@
-define([], function () {
+define([
+    'modules/shared/logger/logger.service'
+], function (LoggerService) {
     'use strict';
     
-    ExceptionService.$inject = ['Logger'];
-    
-    function ExceptionService(Logger) {
+    ExceptionService.NAME = 'ExceptionService';
+    ExceptionService.$inject = [LoggerService.NAME];
+    function ExceptionService(LoggerService) {
         this.catcher = catcher;
 
         function catcher(message) {
             return function (reason) {
-                Logger.error(message, reason);
+                LoggerService.error(message, reason);
             };
         }
     }

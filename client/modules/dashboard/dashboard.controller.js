@@ -2,9 +2,13 @@
  * Controller for dashboard screen.
  */
 
-define(function() {
+define([
+   'modules/project/project.service' 
+], function(ProjectService) {
     'use strict';
-
+    
+    DashboardCtrl.NAME = 'DashboardCtrl';
+    DashboardCtrl.$inject = ['$state', ProjectService.NAME];  
     function DashboardCtrl($state, ProjectService) {
         var vm = this;
         vm.lstActiveProjects = [];  // list of active projects
@@ -34,6 +38,6 @@ define(function() {
 
         init();
     }
-    DashboardCtrl.$inject = ['$state', 'ProjectService'];
+    
     return DashboardCtrl;
 });

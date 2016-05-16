@@ -1,11 +1,11 @@
 <div class="dashboard-page content-container">
     <h4>Active Projects</h4>
-    <div class="card" ng-repeat="project in dashboardCtrl.lstActiveProjects">
+    <div class="card" ng-repeat="project in vm.lstActiveProjects">
         <div class="card-header">
             {{project.name}}
         </div>
         <div class="card-action">
-            <button type="button" class="btn btn-link" title="edit" ng-click="dashboardCtrl.editProject(project.id)">
+            <button type="button" class="btn btn-link" title="edit" ng-click="vm.editProject(project.id)">
                 <i class="fa fa-pencil"></i>
             </button>
         </div>

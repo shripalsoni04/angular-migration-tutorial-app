@@ -5,11 +5,14 @@
 
 define([
     'lodash',
-    './project.model'
+    './project.model',
+    './project.service',
+    'modules/client/client.service',
+    'modules/employee/employee.service'
 ],
-    function (_, ProjectAPIModels) {
+    function (_, ProjectAPIModels, ProjectService, ClientService, EmployeeService) {
         'use strict';
-
+        
         /**
          * Project Detail View Data Model
          */
@@ -68,7 +71,9 @@ define([
                 return this;
             }
         }
-
+        
+        ProjectFormCtrl.NAME = 'ProjectFormCtrl';
+        ProjectFormCtrl.$inject = ['$stateParams', '$state', ProjectService.NAME, ClientService.NAME, EmployeeService.NAME];
         function ProjectFormCtrl($stateParams, $state, ProjectService, ClientService, EmployeeService) {
             var vm = this;
             vm.project = new ProjectDetailVDM();
@@ -160,6 +165,6 @@ define([
             init();
 
         }
-        ProjectFormCtrl.$inject = ['$stateParams', '$state', 'ProjectService', 'ClientService', 'EmployeeService'];
+        
         return ProjectFormCtrl;
     });

@@ -4,7 +4,9 @@
 
 define(function() {
     'use strict';
-
+    
+    AppCtrl.NAME = 'AppCtrl';
+    AppCtrl.$inject = ['$rootScope', '$state'];
     function AppCtrl($rootScope, $state) {
         var vm = this;
         vm.moduleName = 'Dashboard';
@@ -33,6 +35,5 @@ define(function() {
         init();
     }
     
-    AppCtrl.$inject = ['$rootScope', '$state'];
     return AppCtrl;
 });

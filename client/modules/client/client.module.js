@@ -3,6 +3,8 @@ define([
    'modules/shared/shared.module',
    './client.service'
 ], function(angular, sharedModule, ClientService){
+    'use strict';
+    
     return angular.module('app.client', [sharedModule.name])
-        .service('ClientService', ClientService);
+        .service(ClientService.NAME, ClientService);
 });

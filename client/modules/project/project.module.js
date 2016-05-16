@@ -19,9 +19,9 @@ define([
 
     return angular.module('app.project', ['ui.router', clientModule.name, employeeModule.name, sharedModule.name])
         .config(projectRouteConfig)
-        .service('ProjectService', ProjectService)
-        .controller('ProjectCtrl', ProjectCtrl)
-        .controller('ProjectListDetailCtrl', ProjectListDetailCtrl)
-        .controller('ProjectFormCtrl', ProjectFormCtrl)
-        .directive('projectEmployeeList', projectEmployeeListDirective);
+        .service(ProjectService.NAME, ProjectService)
+        .controller(ProjectCtrl.NAME, ProjectCtrl)
+        .controller(ProjectListDetailCtrl.NAME, ProjectListDetailCtrl)
+        .controller(ProjectFormCtrl.NAME, ProjectFormCtrl)
+        .directive(projectEmployeeListDirective.NAME, projectEmployeeListDirective);
 });

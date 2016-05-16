@@ -31,5 +31,5 @@ define([
         sharedModule.name
     ])
         .config(appRouteConfig)
-        .controller('AppCtrl', AppCtrl);
+        .controller(AppCtrl.NAME, AppCtrl);
 });
