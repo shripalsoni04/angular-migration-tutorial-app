@@ -1,21 +1,22 @@
 define([
     'modules/shared/config',
     'mock-data/project',
-    './project.module'
-], function (oConfig, projectMockData, projectModule) {
+    './project.module',
+    './project-list-detail.component'
+], function (oConfig, projectMockData, projectModule, projectListDetailComponentConfig) {
    'use strict';
 
     describe('Project List Detail Controller ', function () {
         beforeEach(module(projectModule.name));
 
         var ctrl, $httpBackend, ProjectService, $q;
-        beforeEach(inject(function ($controller, _$httpBackend_, _ProjectService_, _$q_) {
+        beforeEach(inject(function ($componentController, _$httpBackend_, _ProjectService_, _$q_) {
             $httpBackend = _$httpBackend_;
             ProjectService = _ProjectService_;
             $q = _$q_;
 
             $httpBackend.whenGET(oConfig.apiEndPoint + 'project').respond({ data: projectMockData })
-            ctrl = $controller('ProjectListDetailCtrl', { ProjectService: ProjectService });
+            ctrl = $componentController(projectListDetailComponentConfig.NAME, { ProjectService: ProjectService });
             $httpBackend.flush();
         }));
 

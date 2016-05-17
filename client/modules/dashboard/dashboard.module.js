@@ -7,11 +7,11 @@ define([
     'angular-ui-router',
     'modules/project/project.module',
     './dashboard.routes',
-    './dashboard.controller'
-], function(angular, uiRouterModule, projectModule, dashboardRouteConfig, DashboardCtrl) {
+    './dashboard.component'
+], function(angular, uiRouterModule, projectModule, dashboardRouteConfig, dashboardComponentConfig) {
     'use strict';
     
     return angular.module('app.dashboard', ['ui.router', projectModule.name])
         .config(dashboardRouteConfig)
-        .controller(DashboardCtrl.NAME, DashboardCtrl);
+        .component(dashboardComponentConfig.NAME, dashboardComponentConfig);
 })

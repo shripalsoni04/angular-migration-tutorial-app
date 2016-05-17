@@ -7,7 +7,6 @@ define([
 ], function(ProjectService) {
     'use strict';
     
-    DashboardCtrl.NAME = 'DashboardCtrl';
     DashboardCtrl.$inject = ['$state', ProjectService.NAME];  
     function DashboardCtrl($state, ProjectService) {
         var vm = this;
@@ -39,5 +38,10 @@ define([
         init();
     }
     
-    return DashboardCtrl;
+    return {
+        NAME: 'dashboard',
+        controller: DashboardCtrl,
+        controllerAs: 'vm',
+        templateUrl: 'modules/dashboard/dashboard.html'
+    };
 });

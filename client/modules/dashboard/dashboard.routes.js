@@ -3,8 +3,8 @@
  */
 
 define([
-   './dashboard.controller' 
-], function(DashboardCtrl) {
+     
+], function() {
     'use strict';
     
     dashboardRouteConfig.$inject = ['$stateProvider'];
@@ -14,9 +14,7 @@ define([
         $stateProvider
             .state('app.dashboard', {
                 url: 'dashboard',
-                templateUrl: 'modules/dashboard/dashboard.html',
-                controller: DashboardCtrl.NAME,
-                controllerAs: 'vm'
+                template: '<dashboard></dashboard>'
             });
     }
 

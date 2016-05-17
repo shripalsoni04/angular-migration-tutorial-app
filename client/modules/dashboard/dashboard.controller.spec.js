@@ -1,8 +1,9 @@
 define([
     'modules/shared/config',
     'mock-data/project',
-    './dashboard.module'
-], function (oConfig, projectMockData, dashboardModule) {
+    './dashboard.module',
+    './dashboard.component'
+], function (oConfig, projectMockData, dashboardModule, dashboardComponentConfig) {
     'use strict';
 
     describe('Dashbard Controller', function(){
@@ -10,10 +11,10 @@ define([
        var ctrl, $httpBackend;
        beforeEach(module(dashboardModule.name));
        
-       beforeEach(inject(function($controller, _$httpBackend_){
+       beforeEach(inject(function($componentController, _$httpBackend_){
            $httpBackend = _$httpBackend_;
            $httpBackend.expectGET(oConfig.apiEndPoint+'project').respond({data: projectMockData});
-           ctrl = $controller('DashboardCtrl');
+           ctrl = $componentController(dashboardComponentConfig.NAME);
            $httpBackend.flush();
        }));
        

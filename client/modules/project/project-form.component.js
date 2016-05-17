@@ -72,7 +72,6 @@ define([
             }
         }
         
-        ProjectFormCtrl.NAME = 'ProjectFormCtrl';
         ProjectFormCtrl.$inject = ['$stateParams', '$state', ProjectService.NAME, ClientService.NAME, EmployeeService.NAME];
         function ProjectFormCtrl($stateParams, $state, ProjectService, ClientService, EmployeeService) {
             var vm = this;
@@ -166,5 +165,10 @@ define([
 
         }
         
-        return ProjectFormCtrl;
+        return {
+            NAME: 'projectForm',
+            controller: ProjectFormCtrl,
+            controllerAs: 'vm',
+            templateUrl: 'modules/project/project-form.html'    
+        };
     });

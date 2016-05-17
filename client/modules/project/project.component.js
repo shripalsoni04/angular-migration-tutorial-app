@@ -5,11 +5,15 @@
 define(function() {
     'use strict';
     
-    ProjectCtrl.NAME = 'ProjectCtrl';
     ProjectCtrl.$inject = [];
     function ProjectCtrl() {
         
     }
     
-    return ProjectCtrl;
+    return {
+        NAME: 'project',
+        controller: ProjectCtrl,
+        controllerAs: 'vm',
+        templateUrl: 'modules/project/project.html'    
+    };
 });

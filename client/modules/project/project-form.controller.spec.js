@@ -4,21 +4,22 @@ define([
     'mock-data/project',
     'mock-data/client',
     'mock-data/employee',
-    './project.module'
-], function (_, oConfig, projectMockData, clientMockData, employeeMockData, projectModule) {
+    './project.module',
+    './project-form.component'
+], function (_, oConfig, projectMockData, clientMockData, employeeMockData, projectModule, projectFormComponentConfig) {
    'use strict';
 
     describe('Project Form Controller In Create/Update Mode', function () {
         beforeEach(module(projectModule.name));
 
         var ctrl, $httpBackend, ProjectService, $q;
-        beforeEach(inject(function ($controller, _$httpBackend_, _ProjectService_, _$q_) {
+        beforeEach(inject(function ($componentController, _$httpBackend_, _ProjectService_, _$q_) {
             $httpBackend = _$httpBackend_;
             ProjectService = _ProjectService_;
             $q = _$q_;
             $httpBackend.expectGET(oConfig.apiEndPoint + 'client').respond({ data: clientMockData });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'employee').respond({ data: employeeMockData });
-            ctrl = $controller('ProjectFormCtrl');
+            ctrl = $componentController(projectFormComponentConfig.NAME);
             $httpBackend.flush();
         }));
 
@@ -53,8 +54,8 @@ define([
         beforeEach(module(projectModule.name));
 
         var ctrl;
-        beforeEach(inject(function ($controller) {
-            ctrl = $controller('ProjectFormCtrl');
+        beforeEach(inject(function ($componentController) {
+            ctrl = $componentController(projectFormComponentConfig.NAME);
         }));
 
         it('should create blank project without id', function () {
@@ -68,13 +69,13 @@ define([
         var ctrl, $httpBackend;
         var projectId = 1;
 
-        beforeEach(inject(function ($controller, _$httpBackend_) {
+        beforeEach(inject(function ($componentController, _$httpBackend_) {
             $httpBackend = _$httpBackend_;
 
             $httpBackend.expectGET(oConfig.apiEndPoint + 'project/' + projectId).respond({ data: _.find(projectMockData, { id: projectId }) });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'client').respond({ data: clientMockData });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'employee').respond({ data: employeeMockData });
-            ctrl = $controller('ProjectFormCtrl', { $stateParams: { id: projectId } });
+            ctrl = $componentController(projectFormComponentConfig.NAME, { $stateParams: { id: projectId } });
             $httpBackend.flush();
         }));
 

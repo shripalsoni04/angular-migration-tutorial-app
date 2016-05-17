@@ -8,7 +8,6 @@ define([
 ],function(_, ProjectService) {
     'use strict';
     
-    ProjectListDetailCtrl.NAME = 'ProjectListDetailCtrl';
     ProjectListDetailCtrl.$inject = ['$state', '$stateParams', ProjectService.NAME];
     function ProjectListDetailCtrl($state, $stateParams, ProjectService) {
         var vm = this;
@@ -70,5 +69,11 @@ define([
 
         init();
     }
-    return ProjectListDetailCtrl;
+    
+    return {
+        NAME: 'projectListDetail',
+        controller: ProjectListDetailCtrl,
+        controllerAs: 'vm',
+        templateUrl: 'modules/project/project-list-detail.html'    
+    };
 });

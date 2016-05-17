@@ -9,19 +9,20 @@ define([
     'modules/employee/employee.module',
     'modules/shared/shared.module',
     './project.routes',
-    './project.controller',
+    './project.component',
     './project.service',
-    './project-list-detail.controller',
-    './project-form.controller',
+    './project-list-detail.component',
+    './project-form.component',
     './project-employee-list.directive'
-], function(angular, uiRouterModule, clientModule, employeeModule, sharedModule, projectRouteConfig, ProjectCtrl, ProjectService, ProjectListDetailCtrl, ProjectFormCtrl, projectEmployeeListDirective) {
+], function(angular, uiRouterModule, clientModule, employeeModule, sharedModule, projectRouteConfig, projectComponentConfig, 
+    ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListDirective) {
     'use strict';
 
     return angular.module('app.project', ['ui.router', clientModule.name, employeeModule.name, sharedModule.name])
         .config(projectRouteConfig)
         .service(ProjectService.NAME, ProjectService)
-        .controller(ProjectCtrl.NAME, ProjectCtrl)
-        .controller(ProjectListDetailCtrl.NAME, ProjectListDetailCtrl)
-        .controller(ProjectFormCtrl.NAME, ProjectFormCtrl)
+        .component(projectComponentConfig.NAME, projectComponentConfig)
+        .component(projectListDetailComponentConfig.NAME, projectListDetailComponentConfig)
+        .component(projectFormComponentConfig.NAME, projectFormComponentConfig)
         .directive(projectEmployeeListDirective.NAME, projectEmployeeListDirective);
 });
