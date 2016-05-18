@@ -16,7 +16,7 @@
                 <td>{{employee.role}}</td>
                 <td>{{employee.email}}</td>
                 <td ng-if="vm.isShowAction">
-                    <button type="button" class="btn btn-link" ng-click="vm.removeEmployee($index)">
+                    <button type="button" class="btn btn-link" ng-click="vm.removeEmployee(employee.id)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>

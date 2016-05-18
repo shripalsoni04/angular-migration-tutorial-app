@@ -42,6 +42,6 @@ define([
         NAME: 'dashboard',
         controller: DashboardCtrl,
         controllerAs: 'vm',
-        templateUrl: 'modules/dashboard/dashboard.html'
+        templateUrl: 'modules/dashboard/dashboard.component.html'
     };
 });

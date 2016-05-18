@@ -14,6 +14,6 @@ define(function() {
         NAME: 'project',
         controller: ProjectCtrl,
         controllerAs: 'vm',
-        templateUrl: 'modules/project/project.html'    
+        templateUrl: 'modules/project/project.component.html'    
     };
 });

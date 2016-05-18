@@ -13,9 +13,9 @@ define([
     './project.service',
     './project-list-detail.component',
     './project-form.component',
-    './project-employee-list.directive'
+    './project-employee-list.component'
 ], function(angular, uiRouterModule, clientModule, employeeModule, sharedModule, projectRouteConfig, projectComponentConfig, 
-    ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListDirective) {
+    ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListComponentConfig) {
     'use strict';
 
     return angular.module('app.project', ['ui.router', clientModule.name, employeeModule.name, sharedModule.name])
@@ -24,5 +24,5 @@ define([
         .component(projectComponentConfig.NAME, projectComponentConfig)
         .component(projectListDetailComponentConfig.NAME, projectListDetailComponentConfig)
         .component(projectFormComponentConfig.NAME, projectFormComponentConfig)
-        .directive(projectEmployeeListDirective.NAME, projectEmployeeListDirective);
+        .component(projectEmployeeListComponentConfig.NAME, projectEmployeeListComponentConfig);
 });

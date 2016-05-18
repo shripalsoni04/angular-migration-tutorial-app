@@ -92,7 +92,8 @@ define([
             vm.save = save;
             vm.cancel = cancel;
 
-            function onEmployeeRemove() {
+            function onEmployeeRemove(employeeId) {
+                vm.project.employees.splice(_.findIndex(vm.project.employees, {id: employeeId}), 1);
                 updateUnmappedEmpList();
             }
 
@@ -169,6 +170,6 @@ define([
             NAME: 'projectForm',
             controller: ProjectFormCtrl,
             controllerAs: 'vm',
-            templateUrl: 'modules/project/project-form.html'    
+            templateUrl: 'modules/project/project-form.component.html'    
         };
     });
