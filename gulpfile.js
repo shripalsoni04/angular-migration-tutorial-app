@@ -13,7 +13,7 @@ gulp.task('sass', function () {
 
 gulp.task('serve', ['sass'], function (cb) {
   // starting api server
-  exec('node server', function (err, stdout, stderr) {
+  exec('node node_modules/angular-migration-tutorial-api-server/server.js', function (err, stdout, stderr) {
     /*eslint no-console: "off" */
     console.info(stdout);
     console.error(stderr);
@@ -23,7 +23,7 @@ gulp.task('serve', ['sass'], function (cb) {
   // starting client server
   browserSync({
     server: {
-      baseDir: 'client'
+      baseDir: ['./', './client']
     }
   });
 

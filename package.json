@@ -23,8 +23,6 @@
     "requirejs": "^2.2.0"
   },
   "dependencies": {
-    "body-parser": "^1.15.1",
-    "express": "^4.13.4",
-    "lodash": "^4.12.0"
+    "angular-migration-tutorial-api-server": "file:../../../../../../../var/folders/3l/tgmw1c9105q5j2j6kcmscb040000gn/T/npm-1157-6e1978b4/git-cache-98a87cc72309/e3ac4118d7e44ab42ee672b5d4e9242479c92bca"
   }
 }
