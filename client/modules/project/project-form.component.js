@@ -169,7 +169,6 @@ define([
         return {
             NAME: 'projectForm',
             controller: ProjectFormCtrl,
-            controllerAs: 'vm',
             templateUrl: 'modules/project/project-form.component.html'    
         };
     });

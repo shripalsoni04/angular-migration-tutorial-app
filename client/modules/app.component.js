@@ -5,11 +5,11 @@
 define(function() {
     'use strict';
     
-    AppCtrl.NAME = 'AppCtrl';
     AppCtrl.$inject = ['$rootScope', '$state'];
     function AppCtrl($rootScope, $state) {
         var vm = this;
         vm.moduleName = 'Dashboard';
+        vm.$onInit = init;
 
         function getModuleNameByState(stateName) {
             var moduleName;
@@ -31,9 +31,11 @@ define(function() {
             listenRouteChange();
             vm.moduleName = getModuleNameByState($state.current.name);
         }
-
-        init();
     }
     
-    return AppCtrl;
+    return {
+        NAME: 'app',
+        controller: AppCtrl,
+        templateUrl: 'modules/app.html'
+    };
 });

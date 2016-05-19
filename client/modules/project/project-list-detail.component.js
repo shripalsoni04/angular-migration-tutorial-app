@@ -73,7 +73,6 @@ define([
     return {
         NAME: 'projectListDetail',
         controller: ProjectListDetailCtrl,
-        controllerAs: 'vm',
         templateUrl: 'modules/project/project-list-detail.component.html'    
     };
 });

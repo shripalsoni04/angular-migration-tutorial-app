@@ -13,7 +13,6 @@ define(function() {
     return {
         NAME: 'project',
         controller: ProjectCtrl,
-        controllerAs: 'vm',
         templateUrl: 'modules/project/project.component.html'    
     };
 });

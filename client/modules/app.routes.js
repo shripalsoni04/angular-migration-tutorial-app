@@ -3,8 +3,8 @@
  */
 
 define([
-    './app.controller'
-], function(AppCtrl) {
+    
+], function() {
     'use strict';
     
     RouteConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -12,9 +12,7 @@ define([
         $stateProvider
             .state('app', {
                 url: '/',
-                templateUrl: 'modules/app.html',
-                controller: AppCtrl.NAME,
-                controllerAs: 'vm'
+                template: '<app></app>'
             });
 
         $urlRouterProvider.otherwise('/dashboard');

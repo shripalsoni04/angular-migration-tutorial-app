@@ -6,17 +6,17 @@
                 <th>Name</th>
                 <th>Role</th>
                 <th>Email</th>
-                <th ng-if="vm.isShowAction">Action</th>
+                <th ng-if="$ctrl.isShowAction">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="employee in vm.employees">
+            <tr ng-repeat="employee in $ctrl.employees">
                 <td>{{$index+1}}</td>
                 <td>{{employee.name}}</td>
                 <td>{{employee.role}}</td>
                 <td>{{employee.email}}</td>
-                <td ng-if="vm.isShowAction">
-                    <button type="button" class="btn btn-link" ng-click="vm.removeEmployee(employee.id)">
+                <td ng-if="$ctrl.isShowAction">
+                    <button type="button" class="btn btn-link" ng-click="$ctrl.removeEmployee(employee.id)">
                         <i class="fa fa-trash"></i>
                     </button>
                 </td>

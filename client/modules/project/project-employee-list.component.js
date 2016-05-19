@@ -27,7 +27,6 @@ define(function() {
     return {
         NAME: 'projectEmployeeList',
         controller: ProjectEmployeeListCtrl,
-        controllerAs: 'vm',
         templateUrl: 'modules/project/project-employee-list.component.html',
         bindings: {
             employees: '<',

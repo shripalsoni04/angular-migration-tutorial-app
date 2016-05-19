@@ -1,28 +1,28 @@
-<form name="projectForm" novalidate ng-submit="vm.save()">
+<form name="projectForm" novalidate ng-submit="$ctrl.save()">
     <div class="row">
         <div class="col-md-4" ng-class="{'has-error': projectForm.projectName.$invalid && projectForm.projectName.$dirty}">
             <label for="projectName" class="control-label">Project Name*</label>
-            <input type="text" name="projectName" class="form-control" ng-model="vm.project.name" required/>
+            <input type="text" name="projectName" class="form-control" ng-model="$ctrl.project.name" required/>
             <span class="help-block" ng-show="projectForm.projectName.$invalid && projectForm.projectName.$dirty">Please enter Project Name.</span>
         </div>
         <div class="col-md-4">
             <label for="client" class="control-label">Client</label>
-            <select name="client" class="form-control" ng-model="vm.project.clientId" 
-                ng-options="client.id as client.name for client in vm.lstClients"></select>
+            <select name="client" class="form-control" ng-model="$ctrl.project.clientId" 
+                ng-options="client.id as client.name for client in $ctrl.lstClients"></select>
         </div>
        <div class="col-md-4">
             <label for="isCompleted">Is Completed?</label>
-            <input name="isCompleted" type="checkbox" ng-model="vm.project.isCompleted" class="checkbox"/>
+            <input name="isCompleted" type="checkbox" ng-model="$ctrl.project.isCompleted" class="checkbox"/>
         </div> 
     </div>
     <div class="row">
         <div class="col-md-4" ng-class="{'has-error': projectForm.startDate.$invalid && projectForm.startDate.$dirty}">
             <label for="startDate" class="control-label">Start Date</label>
             <p class="input-group">
-                <input name="startDate" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="vm.project.startDate" 
-                    is-open="vm.startDatePicker.isOpen" datepicker-options="{maxDate: vm.project.endDate}" />
+                <input name="startDate" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="$ctrl.project.startDate" 
+                    is-open="$ctrl.startDatePicker.isOpen" datepicker-options="{maxDate: $ctrl.project.endDate}" />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="vm.startDatePicker.isOpen = !vm.startDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.startDatePicker.isOpen = !$ctrl.startDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p>
             <span class="help-block" ng-show="projectForm.startDate.$invalid && projectForm.startDate.$dirty">Please enter date in MM/DD/YYYY format.</span>
@@ -30,10 +30,10 @@
         <div class="col-md-4" ng-class="{'has-error': projectForm.endDate.$invalid && projectForm.endDate.$dirty}">
             <label for="endDate" class="control-label">End Date</label>
             <p class="input-group">
-                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="vm.project.endDate" 
-                    is-open="vm.endDatePicker.isOpen" datepicker-options="{minDate: vm.project.startDate}" />
+                <input name="endDate" type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="$ctrl.project.endDate" 
+                    is-open="$ctrl.endDatePicker.isOpen" datepicker-options="{minDate: $ctrl.project.startDate}" />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="vm.endDatePicker.isOpen = !vm.endDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.endDatePicker.isOpen = !$ctrl.endDatePicker.isOpen;"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p> 
             <span class="help-block" ng-show="projectForm.endDate.$invalid && projectForm.endDate.$dirty">Please enter date in MM/DD/YYYY format.</span>
@@ -42,31 +42,31 @@
     <div class="row">
         <div class="col-md-8">
             <label class="control-label">Project Details</label>
-            <textarea name="detail" class="form-control" rows="10" ng-model="vm.project.details"></textarea>    
+            <textarea name="detail" class="form-control" rows="10" ng-model="$ctrl.project.details"></textarea>    
         </div>
     </div>
     <div class="row">
         <div class="col-md-8">
             <label class="control-label">Employees</label>
             <div class="input-group">
-                <select name="empleeToAdd" class="form-control" ng-model="vm.project.employeeToAdd" 
-                    ng-options="employee as employee.name for employee in vm.unmappedEmployees track by employee.id"></select>
+                <select name="empleeToAdd" class="form-control" ng-model="$ctrl.project.employeeToAdd" 
+                    ng-options="employee as employee.name for employee in $ctrl.unmappedEmployees track by employee.id"></select>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-disabled="!vm.project.employeeToAdd"
-                        ng-click="vm.addEmployeeToProject(vm.project.employeeToAdd)">Add</button>
+                    <button type="button" class="btn btn-default" ng-disabled="!$ctrl.project.employeeToAdd"
+                        ng-click="$ctrl.addEmployeeToProject($ctrl.project.employeeToAdd)">Add</button>
                 </span>
             </div>
             <div>
                 <project-employee-list 
-                    employees="vm.project.employees" is-show-action="true"
-                    on-employee-remove="vm.onEmployeeRemove(employeeId)"
+                    employees="$ctrl.project.employees" is-show-action="true"
+                    on-employee-remove="$ctrl.onEmployeeRemove(employeeId)"
                     ></project-employee-list>    
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
-            <button class="btn btn-default" type="button" ng-click="vm.cancel()">Cancel</button>
+            <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
             <button class="btn btn-primary" ng-disabled="projectForm.$invalid">Save</button>
         </div>
     </div>

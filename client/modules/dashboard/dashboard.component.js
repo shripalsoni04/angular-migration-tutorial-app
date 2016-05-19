@@ -41,7 +41,6 @@ define([
     return {
         NAME: 'dashboard',
         controller: DashboardCtrl,
-        controllerAs: 'vm',
         templateUrl: 'modules/dashboard/dashboard.component.html'
     };
 });
