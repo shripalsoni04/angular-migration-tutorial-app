@@ -72,9 +72,11 @@ define([
             }
         }
         
-        ProjectFormCtrl.$inject = ['$stateParams', '$state', ProjectService.NAME, ClientService.NAME, EmployeeService.NAME];
-        function ProjectFormCtrl($stateParams, $state, ProjectService, ClientService, EmployeeService) {
+        ProjectFormCtrl.$inject = ['$rootRouter', ProjectService.NAME, ClientService.NAME, EmployeeService.NAME];
+        function ProjectFormCtrl($rootRouter, ProjectService, ClientService, EmployeeService) {
             var vm = this;
+            var previousState;
+            
             vm.project = new ProjectDetailVDM();
             vm.lstClients = [];
             vm.lstEmployees = [];
@@ -91,6 +93,8 @@ define([
             vm.addEmployeeToProject = addEmployeeToProject;
             vm.save = save;
             vm.cancel = cancel;
+            vm.$routerOnActivate = $routerOnActivate;
+            vm.$onInit = init;
 
             function onEmployeeRemove(employeeId) {
                 vm.project.employees.splice(_.findIndex(vm.project.employees, {id: employeeId}), 1);
@@ -103,7 +107,11 @@ define([
             }
             
             function goToPreviousState(projectId){
-                $state.go($stateParams.previousState || 'app.project.list-detail', {selectedProjectId: projectId})    
+                if(previousState === 'Dashboard'){
+                    $rootRouter.navigate([previousState]);
+                }else{
+                    vm.$router.navigate(['ProjectListDetail', {selectedProjectId: projectId}])
+                }
             }
             
             function save() {
@@ -149,26 +157,29 @@ define([
                 });
             }
             
-            function init() {
-                var projectId = $stateParams.id;
+            function $routerOnActivate(next){
+                var projectId = next.params.id;
+                previousState = next.params.previousState;
                 if (projectId) {
                     loadProjectById(projectId).then(function (project) {
                         setProjectData(project);
                         updateUnmappedEmpList();
                     });
                 }
-
+            }
+            
+            function init() {
                 loadClients();
                 loadEmployees();
             }
-
-            init();
-
         }
         
         return {
             NAME: 'projectForm',
             controller: ProjectFormCtrl,
-            templateUrl: 'modules/project/project-form.component.html'    
+            templateUrl: 'modules/project/project-form.component.html',
+            bindings: {
+                $router: '<'
+            }    
         };
     });

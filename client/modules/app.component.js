@@ -2,40 +2,36 @@
  * Root controller for the application.
  */
 
-define(function() {
+define([
+    './dashboard/dashboard.component',
+    './project/project.component'
+], function(dashboardComponentConfig, projectComponentConfig) {
     'use strict';
     
-    AppCtrl.$inject = ['$rootScope', '$state'];
-    function AppCtrl($rootScope, $state) {
+    AppCtrl.$inject = ['$rootRouter'];
+    function AppCtrl($rootRouter) {
         var vm = this;
         vm.moduleName = 'Dashboard';
-        vm.$onInit = init;
+        vm.$onInit = $onInit;
 
-        function getModuleNameByState(stateName) {
-            var moduleName;
-            if (stateName.indexOf('app.dashboard') === 0) {
-                moduleName = 'Dashboard';
-            } else if (stateName.indexOf('app.project') === 0) {
-                moduleName = 'Project';
-            }
-            return moduleName;
+        function getModuleNameByUrl(url) {
+            return url.startsWith('project') ? 'Projects' : 'Dashboard';
         }
 
-        function listenRouteChange() {
-            $rootScope.$on('$stateChangeStart', function(event, toState) {
-                vm.moduleName = getModuleNameByState(toState.name);
+        function $onInit() {
+            $rootRouter.subscribe(function(url){
+                vm.moduleName = getModuleNameByUrl(url);
             });
-        }
-
-        function init() {
-            listenRouteChange();
-            vm.moduleName = getModuleNameByState($state.current.name);
         }
     }
     
     return {
         NAME: 'app',
         controller: AppCtrl,
-        templateUrl: 'modules/app.html'
+        templateUrl: 'modules/app.component.html',
+        $routeConfig: [
+            {path: '/dashboard', name: 'Dashboard', component: dashboardComponentConfig.NAME, useAsDefault: true},
+            {path: '/project/...', name: 'Project', component: projectComponentConfig.NAME}
+        ]
     };
 });

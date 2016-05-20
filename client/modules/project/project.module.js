@@ -4,22 +4,19 @@
 
 define([
     'angular',
-    'angular-ui-router',
     'modules/client/client.module',
     'modules/employee/employee.module',
     'modules/shared/shared.module',
-    './project.routes',
     './project.component',
     './project.service',
     './project-list-detail.component',
     './project-form.component',
     './project-employee-list.component'
-], function(angular, uiRouterModule, clientModule, employeeModule, sharedModule, projectRouteConfig, projectComponentConfig, 
+], function(angular, clientModule, employeeModule, sharedModule, projectComponentConfig, 
     ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListComponentConfig) {
     'use strict';
 
-    return angular.module('app.project', ['ui.router', clientModule.name, employeeModule.name, sharedModule.name])
-        .config(projectRouteConfig)
+    return angular.module('app.project', [clientModule.name, employeeModule.name, sharedModule.name])
         .service(ProjectService.NAME, ProjectService)
         .component(projectComponentConfig.NAME, projectComponentConfig)
         .component(projectListDetailComponentConfig.NAME, projectListDetailComponentConfig)

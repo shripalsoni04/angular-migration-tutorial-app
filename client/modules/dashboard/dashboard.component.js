@@ -7,13 +7,14 @@ define([
 ], function(ProjectService) {
     'use strict';
     
-    DashboardCtrl.$inject = ['$state', ProjectService.NAME];  
-    function DashboardCtrl($state, ProjectService) {
+    DashboardCtrl.$inject = [ProjectService.NAME];  
+    function DashboardCtrl(ProjectService) {
         var vm = this;
         vm.lstActiveProjects = [];  // list of active projects
 
         vm.loadActiveProjects = loadActiveProjects;
         vm.editProject = editProject;
+        vm.$onInit = $onInit;
 
         /**
          * Loads active projects list.
@@ -28,19 +29,20 @@ define([
          * Opens project form to edit the project.
          */
         function editProject(projectId){
-            $state.go('app.project.edit', {id: projectId, previousState: 'app.dashboard'});
+            vm.$router.navigate(['Project', 'ProjectUpdate', {id: projectId, previousState: 'Dashboard'}]);
         }
         
-        function init() {
+        function $onInit() {
             vm.loadActiveProjects();
         }
-
-        init();
     }
     
     return {
         NAME: 'dashboard',
         controller: DashboardCtrl,
-        templateUrl: 'modules/dashboard/dashboard.component.html'
+        templateUrl: 'modules/dashboard/dashboard.component.html',
+        bindings: {
+            $router: '<'
+        }
     };
 });

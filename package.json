@@ -23,6 +23,7 @@
     "requirejs": "^2.2.0"
   },
   "dependencies": {
-    "angular-migration-tutorial-api-server": "file:../../../../../../../var/folders/3l/tgmw1c9105q5j2j6kcmscb040000gn/T/npm-1157-6e1978b4/git-cache-98a87cc72309/e3ac4118d7e44ab42ee672b5d4e9242479c92bca"
+    "@angular/router": "^0.2.0",
+    "angular-migration-tutorial-api-server": "file:../../../../../../../var/folders/3l/tgmw1c9105q5j2j6kcmscb040000gn/T/npm-1736-ec91959b/git-cache-9210a483c9bd/e3ac4118d7e44ab42ee672b5d4e9242479c92bca"
   }
 }
