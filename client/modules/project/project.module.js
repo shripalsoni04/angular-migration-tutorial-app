@@ -16,7 +16,7 @@ define([
     ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListComponentConfig) {
     'use strict';
 
-    return angular.module('app.project', [clientModule.name, employeeModule.name, sharedModule.name])
+    return angular.module('app.project', ['ngComponentRouter', clientModule.name, employeeModule.name, sharedModule.name])
         .service(ProjectService.NAME, ProjectService)
         .component(projectComponentConfig.NAME, projectComponentConfig)
         .component(projectListDetailComponentConfig.NAME, projectListDetailComponentConfig)

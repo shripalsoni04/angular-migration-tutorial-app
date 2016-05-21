@@ -15,6 +15,7 @@ define([
            $httpBackend = _$httpBackend_;
            $httpBackend.expectGET(oConfig.apiEndPoint+'project').respond({data: projectMockData});
            ctrl = $componentController(dashboardComponentConfig.NAME);
+           ctrl.$onInit();
            $httpBackend.flush();
        }));
        

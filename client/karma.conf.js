@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine', 'requirejs', 'es6-shim'],
 
 
     // list of files / patterns to load in the browser
@@ -18,7 +18,7 @@ module.exports = function(config) {
       'test-main.js',
       'bower_components/angular/angular.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      {pattern: 'bower_components/angular-ui-router/release/angular-ui-router.min.js', included: false},
+      '../node_modules/@angular/router/angular1/angular_1_router.js',
       {pattern: 'bower_components/bootstrap/dist/js/bootstrap.min.js', included: false},
       {pattern: 'bower_components/jquery/dist/jquery.min.js', included: false},
       {pattern: 'bower_components/es6-promise/es6-promise.min.js', included: false},
@@ -27,8 +27,7 @@ module.exports = function(config) {
       {pattern: 'mock-data/*.js', included: false},
       {pattern: 'modules/*.js', included: false},
       {pattern: 'modules/**/*.js', included: false},
-      {pattern: 'modules/**/*.spec.js', included: false},
-      'modules/project/project-employee-list.directive.html'
+      {pattern: 'modules/**/*.spec.js', included: false}
     ],
 
 
@@ -71,7 +70,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
-
+    
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

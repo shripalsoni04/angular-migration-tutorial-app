@@ -17,6 +17,7 @@ define([
 
             $httpBackend.whenGET(oConfig.apiEndPoint + 'project').respond({ data: projectMockData })
             ctrl = $componentController(projectListDetailComponentConfig.NAME, { ProjectService: ProjectService });
+            ctrl.$routerOnActivate({params: {selectedProjectId: 1}});
             $httpBackend.flush();
         }));
 

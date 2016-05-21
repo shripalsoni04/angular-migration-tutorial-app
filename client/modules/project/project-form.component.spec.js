@@ -20,6 +20,7 @@ define([
             $httpBackend.expectGET(oConfig.apiEndPoint + 'client').respond({ data: clientMockData });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'employee').respond({ data: employeeMockData });
             ctrl = $componentController(projectFormComponentConfig.NAME);
+            ctrl.$onInit();
             $httpBackend.flush();
         }));
 
@@ -72,10 +73,12 @@ define([
         beforeEach(inject(function ($componentController, _$httpBackend_) {
             $httpBackend = _$httpBackend_;
 
-            $httpBackend.expectGET(oConfig.apiEndPoint + 'project/' + projectId).respond({ data: _.find(projectMockData, { id: projectId }) });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'client').respond({ data: clientMockData });
             $httpBackend.expectGET(oConfig.apiEndPoint + 'employee').respond({ data: employeeMockData });
+            $httpBackend.expectGET(oConfig.apiEndPoint + 'project/' + projectId).respond({ data: _.find(projectMockData, { id: projectId }) });
             ctrl = $componentController(projectFormComponentConfig.NAME, { $stateParams: { id: projectId } });
+            ctrl.$onInit();
+            ctrl.$routerOnActivate({params: {id: 1}});
             $httpBackend.flush();
         }));
 

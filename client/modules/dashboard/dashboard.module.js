@@ -9,6 +9,6 @@ define([
 ], function(angular, projectModule, dashboardComponentConfig) {
     'use strict';
     
-    return angular.module('app.dashboard', [projectModule.name])
+    return angular.module('app.dashboard', ['ngComponentRouter', projectModule.name])
         .component(dashboardComponentConfig.NAME, dashboardComponentConfig);
 })
