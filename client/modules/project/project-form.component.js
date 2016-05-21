@@ -94,7 +94,7 @@ define([
             vm.save = save;
             vm.cancel = cancel;
             vm.$routerOnActivate = $routerOnActivate;
-            vm.$onInit = init;
+            vm.$onInit = $onInit;
 
             function onEmployeeRemove(employeeId) {
                 vm.project.employees.splice(_.findIndex(vm.project.employees, {id: employeeId}), 1);
@@ -168,7 +168,7 @@ define([
                 }
             }
             
-            function init() {
+            function $onInit() {
                 loadClients();
                 loadEmployees();
             }
