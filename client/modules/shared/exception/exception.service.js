@@ -1,5 +1,5 @@
 define([
-    'modules/shared/logger/logger.service'
+    '../logger/logger.service'
 ], function (LoggerService) {
     'use strict';
     

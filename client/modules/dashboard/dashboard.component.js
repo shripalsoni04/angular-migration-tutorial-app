@@ -3,7 +3,7 @@
  */
 
 define([
-   'modules/project/project.service' 
+   '../project/project.service' 
 ], function(ProjectService) {
     'use strict';
     

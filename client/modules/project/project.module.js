@@ -4,15 +4,16 @@
 
 define([
     'angular',
-    'modules/client/client.module',
-    'modules/employee/employee.module',
-    'modules/shared/shared.module',
+    'angular-component-router',
+    '../client/client.module',
+    '../employee/employee.module',
+    '../shared/shared.module',
     './project.component',
     './project.service',
     './project-list-detail.component',
     './project-form.component',
     './project-employee-list.component'
-], function(angular, clientModule, employeeModule, sharedModule, projectComponentConfig, 
+], function(angular, ngComponentRouter, clientModule, employeeModule, sharedModule, projectComponentConfig, 
     ProjectService, projectListDetailComponentConfig, projectFormComponentConfig, projectEmployeeListComponentConfig) {
     'use strict';
 

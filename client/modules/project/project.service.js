@@ -4,7 +4,7 @@
 
 define([
     './project.model',
-    'modules/shared/base-service.factory'
+    '../shared/base-service.factory'
 ], function (ProjectAPIModels, baseServiceFactory) {
     'use strict';
 

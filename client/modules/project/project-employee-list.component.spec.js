@@ -1,7 +1,7 @@
 define([
     'angular',
     './project.module',
-    'mock-data/employee',
+    '../../mock-data/employee',
     './project-employee-list.component'
 ], function (angular, projectModule, employeeMockData, projectEmployeListComponentConfig) {
     'use strict';

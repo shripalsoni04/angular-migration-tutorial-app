@@ -4,7 +4,7 @@
 
 define([
     'angular',
-    'modules/shared/shared.module',
+    '../shared/shared.module',
     './employee.service'
 ], function(angular, sharedModule, EmployeeService) {
     'use strict';

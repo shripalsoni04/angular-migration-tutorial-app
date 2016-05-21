@@ -4,7 +4,7 @@
 
 define([
     './client.model',
-    'modules/shared/base-service.factory'
+    '../shared/base-service.factory'
 ], function(ClientAPIModels, baseServiceFactory) {
     'use strict';
 

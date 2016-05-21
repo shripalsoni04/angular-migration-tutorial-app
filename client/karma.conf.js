@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
@@ -15,32 +15,32 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test-main.js',
-      'bower_components/angular/angular.min.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      '../node_modules/@angular/router/angular1/angular_1_router.js',
-      {pattern: 'bower_components/bootstrap/dist/js/bootstrap.min.js', included: false},
-      {pattern: 'bower_components/jquery/dist/jquery.min.js', included: false},
-      {pattern: 'bower_components/es6-promise/es6-promise.min.js', included: false},
-      {pattern: 'bower_components/lodash/dist/lodash.min.js', included: false},
-      {pattern: 'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js', included: false},
-      {pattern: 'mock-data/*.js', included: false},
-      {pattern: 'modules/*.js', included: false},
-      {pattern: 'modules/**/*.js', included: false},
-      {pattern: 'modules/**/*.spec.js', included: false}
+      'client/test-main.js',
+      'client/bower_components/angular/angular.min.js',
+      'client/bower_components/angular-mocks/angular-mocks.js',
+      {pattern: 'node_modules/@angular/router/angular1/angular_1_router.js', included: false},
+      {pattern: 'client/bower_components/bootstrap/dist/js/bootstrap.min.js', included: false},
+      {pattern: 'client/bower_components/jquery/dist/jquery.min.js', included: false},
+      {pattern: 'client/bower_components/es6-promise/es6-promise.min.js', included: false},
+      {pattern: 'client/bower_components/lodash/dist/lodash.min.js', included: false},
+      {pattern: 'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js', included: false},
+      {pattern: 'client/mock-data/*.js', included: false},
+      {pattern: 'client/modules/*.js', included: false},
+      {pattern: 'client/modules/**/*.js', included: false},
+      {pattern: 'client/modules/**/*.spec.js', included: false}
     ],
 
 
     // list of files to exclude
     exclude: [
-      'main.js'
+      'client/main.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'modules/**/*.html': ['ng-html2js']
+      'client/modules/**/*.html': ['ng-html2js']
     },
 
 

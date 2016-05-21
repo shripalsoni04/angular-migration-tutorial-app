@@ -7,8 +7,8 @@ define([
     'lodash',
     './project.model',
     './project.service',
-    'modules/client/client.service',
-    'modules/employee/employee.service'
+    '../client/client.service',
+    '../employee/employee.service'
 ],
     function (_, ProjectAPIModels, ProjectService, ClientService, EmployeeService) {
         'use strict';

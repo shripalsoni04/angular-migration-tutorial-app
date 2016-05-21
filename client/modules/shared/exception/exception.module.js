@@ -1,7 +1,7 @@
 define([
     'angular',
-    'modules/shared/logger/logger.module',
-    'modules/shared/exception/exception.service'
+    '../logger/logger.module',
+    './exception.service'
 ], function (angular, loggerModule, ExceptionService) {
     'use strict';
 

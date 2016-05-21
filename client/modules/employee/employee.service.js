@@ -4,7 +4,7 @@
 
 define([
     './employee.model',
-    'modules/shared/base-service.factory'
+    '../shared/base-service.factory'
 ], function(EmployeeAPIModels, baseServiceFactory) {
     'use strict';
     

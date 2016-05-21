@@ -1,7 +1,7 @@
 define([
     './client.module',
-    'modules/shared/config',
-    'mock-data/client'
+    '../shared/config',
+    '../../mock-data/client'
 ], function(clientModule, oConfig, clientMockData){
    'use strict';
    

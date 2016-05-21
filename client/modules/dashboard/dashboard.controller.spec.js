@@ -1,6 +1,6 @@
 define([
-    'modules/shared/config',
-    'mock-data/project',
+    '../shared/config',
+    '../../mock-data/project',
     './dashboard.module',
     './dashboard.component'
 ], function (oConfig, projectMockData, dashboardModule, dashboardComponentConfig) {

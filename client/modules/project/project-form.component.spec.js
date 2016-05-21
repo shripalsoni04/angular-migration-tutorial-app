@@ -1,9 +1,9 @@
 define([
     'lodash',
-    'modules/shared/config',
-    'mock-data/project',
-    'mock-data/client',
-    'mock-data/employee',
+    '../shared/config',
+    '../../mock-data/project',
+    '../../mock-data/client',
+    '../../mock-data/employee',
     './project.module',
     './project-form.component'
 ], function (_, oConfig, projectMockData, clientMockData, employeeMockData, projectModule, projectFormComponentConfig) {
